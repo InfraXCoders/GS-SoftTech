@@ -116,25 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
     animateCanvas();
   }
 
-  // ── Typing animation ──
-  var taglineEl = document.getElementById('tagline-text');
-  if (taglineEl) {
-    var phrases = ['Secure. Scalable. Intelligent.', 'Distributed Systems experts.', 'Event-Driven Architecture.', 'Built for the cloud.', 'Zero-trust security.', 'Real-time observability.'];
-    var pIdx = 0, cIdx = 0, deleting = false;
-    function type() {
-      var current = phrases[pIdx];
-      if (!deleting) {
-        taglineEl.textContent = current.slice(0, ++cIdx);
-        if (cIdx === current.length) { deleting = true; setTimeout(type, 2200); return; }
-        setTimeout(type, 60);
-      } else {
-        taglineEl.textContent = current.slice(0, --cIdx);
-        if (cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; setTimeout(type, 400); return; }
-        setTimeout(type, 30);
-      }
-    }
-    setTimeout(type, 600);
-  }
+  // Tagline is static — no typing animation
 
   // ── Counter animation ──
   function animateCount(el) {

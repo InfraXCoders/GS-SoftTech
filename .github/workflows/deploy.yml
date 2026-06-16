@@ -15,43 +15,31 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ── 2. Set up SSH key ─────────────────────────────────────
-      - name: Set up SSH key
-        run: |
-          mkdir -p ~/.ssh
-          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          # Add host to known_hosts (ignore failure — StrictHostKeyChecking=no used below)
-          ssh-keyscan -H -p "${{ secrets.VPS_PORT }}" "${{ secrets.VPS_HOST }}" \
-            >> ~/.ssh/known_hosts 2>/dev/null || true
+      # ── 2. Copy files to VPS ──────────────────────────────────
+      - name: Upload files via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          source: ".,!.git,!.github,!server,!*.md"
+          target: /var/www/gssofttech.com/html/
+          overwrite: true
 
-      # ── 3. Deploy files via rsync ─────────────────────────────
-      - name: Deploy files via rsync
-        env:
-          VPS_PORT: ${{ secrets.VPS_PORT }}
-          VPS_USER: ${{ secrets.VPS_USER }}
-          VPS_HOST: ${{ secrets.VPS_HOST }}
-        run: |
-          SSH_CMD="ssh -p ${VPS_PORT} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
-          rsync -avz --delete \
-            --exclude='.git/' \
-            --exclude='.github/' \
-            --exclude='server/' \
-            --exclude='*.md' \
-            -e "${SSH_CMD}" \
-            ./ ${VPS_USER}@${VPS_HOST}:/var/www/gssofttech.com/html/
-
-      # ── 4. Fix permissions & reload Nginx ─────────────────────
+      # ── 3. Fix permissions & reload Nginx ─────────────────────
       - name: Fix permissions and reload Nginx
-        env:
-          VPS_PORT: ${{ secrets.VPS_PORT }}
-          VPS_USER: ${{ secrets.VPS_USER }}
-          VPS_HOST: ${{ secrets.VPS_HOST }}
-        run: |
-          ssh -p "${VPS_PORT}" -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
-            "${VPS_USER}@${VPS_HOST}" \
-            "sudo chown -R www-data:www-data /var/www/gssofttech.com/html && sudo chmod -R 755 /var/www/gssofttech.com/html && sudo nginx -t && sudo systemctl reload nginx"
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            sudo chown -R www-data:www-data /var/www/gssofttech.com/html
+            sudo chmod -R 755 /var/www/gssofttech.com/html
+            sudo nginx -t && sudo systemctl reload nginx
 
-      # ── 5. Done ───────────────────────────────────────────────
+      # ── 4. Done ───────────────────────────────────────────────
       - name: Deployment complete
         run: echo "✅ gssofttech.com deployed successfully"

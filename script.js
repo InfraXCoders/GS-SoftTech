@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
       this.speedX = (Math.random() - 0.5) * 0.5;
       this.speedY = (Math.random() - 0.5) * 0.5;
       this.opacity = Math.random() * 0.5 + 0.1;
-      this.color = Math.random() > 0.6 ? '0,229,255' : '41,121,255';
+      this.color = Math.random() > 0.6 ? '8,145,178' : '29,111,242';
     }
     Particle.prototype.update = function () {
       this.x += this.speedX;
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
           var dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 100) {
             ctx.beginPath();
-            ctx.strokeStyle = 'rgba(41,121,255,' + (0.12 * (1 - dist / 100)) + ')';
+            ctx.strokeStyle = 'rgba(29,111,242,' + (0.1 * (1 - dist / 100)) + ')';
             ctx.lineWidth = 0.6;
             ctx.moveTo(particles[a].x, particles[a].y);
             ctx.lineTo(particles[b].x, particles[b].y);

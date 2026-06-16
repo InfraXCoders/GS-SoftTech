@@ -150,7 +150,7 @@ p { color: var(--slate); line-height: 1.7; }
 }
 .nav-links a:hover, .nav-links a.active { color: var(--navy); background: var(--blue-50); }
 .nav-cta { margin-left: 12px; flex-shrink: 0; }
-.nav-links .nav-cta a.btn { white-space: nowrap; padding: 10px 22px; font-size: .9rem; }
+.nav-links .nav-cta a.btn { white-space: nowrap; padding: 10px 22px; font-size: .9rem; color: #fff; font-weight: 700; }
 .nav-toggle { display: none; background: none; border: 1px solid var(--border); cursor: pointer; padding: 8px; border-radius: 8px; }
 .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--navy); margin: 4px 0; transition: .3s; border-radius: 2px; }
 

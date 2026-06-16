@@ -173,6 +173,48 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // ── Hero slider ──
+  var slider = document.getElementById('heroSlider');
+  if (slider) {
+    var slides = slider.querySelectorAll('.hero-slide');
+    var dots = document.querySelectorAll('.hero-dot');
+    var current = 0;
+    var total = slides.length;
+    var autoTimer;
+
+    function goTo(idx) {
+      current = (idx + total) % total;
+      slider.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+    }
+
+    function startAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(function() { goTo(current + 1); }, 6000);
+    }
+
+    dots.forEach(function(d) {
+      d.addEventListener('click', function() { goTo(+d.dataset.slide); startAuto(); });
+    });
+    var prev = document.getElementById('heroPrev');
+    var next = document.getElementById('heroNext');
+    if (prev) prev.addEventListener('click', function() { goTo(current - 1); startAuto(); });
+    if (next) next.addEventListener('click', function() { goTo(current + 1); startAuto(); });
+
+    // Touch/swipe
+    var touchX = null;
+    slider.addEventListener('touchstart', function(e) { touchX = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend', function(e) {
+      if (touchX === null) return;
+      var diff = touchX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { goTo(diff > 0 ? current + 1 : current - 1); startAuto(); }
+      touchX = null;
+    });
+
+    goTo(0);
+    startAuto();
+  }
+
   // ── Hero card 3D tilt ──
   var heroCard = document.querySelector('.hero-card');
   if (heroCard) {

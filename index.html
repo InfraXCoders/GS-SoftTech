@@ -90,24 +90,101 @@
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
 
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <div class="hero-badge"><span class="dot"></span>Technology Consulting &amp; Software Solutions</div>
-      <h1>GS SoftTech</h1>
-      <div class="tagline"><span id="tagline-text">Secure. Scalable. Intelligent.</span></div>
-      <p class="lead">We deliver custom web applications, cloud solutions, infrastructure monitoring, cybersecurity, container platforms, and AI-powered technology tailored to your business needs.</p>
-      <div class="hero-actions">
-        <a href="services.html" class="btn btn-primary">Explore services →</a>
-        <a href="contact.html" class="btn btn-ghost">Book a consultation</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><strong><span class="count" data-target="99.9" data-suffix="%">0</span></strong><span>Uptime focus</span></div>
-        <div class="stat"><strong><span class="count" data-target="24" data-suffix="/7">0</span></strong><span>Monitoring</span></div>
-        <div class="stat"><strong><span class="count" data-target="100" data-suffix="%">0</span></strong><span>Secure by design</span></div>
+  <!-- Slider -->
+  <div class="hero-slider" id="heroSlider">
+
+    <!-- ── Slide 1: Web Development Portfolio ── -->
+    <div class="hero-slide">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-badge"><span class="dot"></span>Web Development &amp; Design</div>
+          <h1>GS SoftTech</h1>
+          <div class="tagline"><span>Crafting Digital Experiences.</span></div>
+          <p class="lead">From concept to launch — we design and build fast, responsive, and beautiful websites tailored to your brand and business goals.</p>
+          <div class="hero-actions">
+            <a href="services.html" class="btn btn-primary">View services →</a>
+            <a href="contact.html" class="btn btn-ghost">Start a project</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><strong>100%</strong><span>Custom design</span></div>
+            <div class="stat"><strong>Fast</strong><span>Performance</span></div>
+            <div class="stat"><strong>SEO</strong><span>Optimised</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card portfolio-card">
+            <div class="portfolio-label">Featured Projects</div>
+            <div class="portfolio-projects">
+
+              <a href="https://www.drivexpert.co.uk/" target="_blank" rel="noopener" class="proj-card">
+                <div class="proj-browser">
+                  <div class="proj-browser-bar">
+                    <span class="proj-dot r"></span><span class="proj-dot y"></span><span class="proj-dot g"></span>
+                    <span class="proj-url">drivexpert.co.uk</span>
+                  </div>
+                  <div class="proj-preview drive">
+                    <div class="proj-preview-nav"></div>
+                    <div class="proj-preview-hero">
+                      <div class="proj-preview-title">Drive Xpert</div>
+                      <div class="proj-preview-sub">Driving School · Stevenage</div>
+                      <div class="proj-preview-btn"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="proj-info">
+                  <span class="proj-name">Drive Xpert</span>
+                  <span class="proj-tags"><em>Driving School</em> · Booking · SEO</span>
+                </div>
+              </a>
+
+              <a href="https://www.orthochronicles.info/" target="_blank" rel="noopener" class="proj-card">
+                <div class="proj-browser">
+                  <div class="proj-browser-bar">
+                    <span class="proj-dot r"></span><span class="proj-dot y"></span><span class="proj-dot g"></span>
+                    <span class="proj-url">orthochronicles.info</span>
+                  </div>
+                  <div class="proj-preview ortho">
+                    <div class="proj-preview-nav"></div>
+                    <div class="proj-preview-hero">
+                      <div class="proj-preview-title">OrthoChronicles</div>
+                      <div class="proj-preview-sub">Orthodontics Blog</div>
+                      <div class="proj-preview-btn"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="proj-info">
+                  <span class="proj-name">OrthoChronicles</span>
+                  <span class="proj-tags"><em>Medical Blog</em> · CMS · Design</span>
+                </div>
+              </a>
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="hero-visual">
+    <!-- ── Slide 2: Tech Stack (original hero) ── -->
+    <div class="hero-slide">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-badge"><span class="dot"></span>Technology Consulting &amp; Software Solutions</div>
+          <h1>GS SoftTech</h1>
+          <div class="tagline"><span id="tagline-text">Secure. Scalable. Intelligent.</span></div>
+          <p class="lead">We deliver custom web applications, cloud solutions, infrastructure monitoring, cybersecurity, container platforms, and AI-powered technology tailored to your business needs.</p>
+          <div class="hero-actions">
+            <a href="services.html" class="btn btn-primary">Explore services →</a>
+            <a href="contact.html" class="btn btn-ghost">Book a consultation</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><strong><span class="count" data-target="99.9" data-suffix="%">0</span></strong><span>Uptime focus</span></div>
+            <div class="stat"><strong><span class="count" data-target="24" data-suffix="/7">0</span></strong><span>Monitoring</span></div>
+            <div class="stat"><strong><span class="count" data-target="100" data-suffix="%">0</span></strong><span>Secure by design</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
       <div class="hero-card tech-showcase">
         <div class="showcase-label">Powered by modern technology</div>
 
@@ -171,6 +248,20 @@
       </div>
     </div>
   </div>
+
+    </div><!-- /slide 2 -->
+  </div><!-- /hero-slider -->
+
+  <!-- Slide dots -->
+  <div class="hero-dots">
+    <button class="hero-dot active" data-slide="0" aria-label="Slide 1: Portfolio"></button>
+    <button class="hero-dot" data-slide="1" aria-label="Slide 2: Tech stack"></button>
+  </div>
+
+  <!-- Prev / Next arrows -->
+  <button class="hero-arrow hero-prev" id="heroPrev" aria-label="Previous slide">&#8592;</button>
+  <button class="hero-arrow hero-next" id="heroNext" aria-label="Next slide">&#8594;</button>
+
 </section>
 
 <!-- Trust bar -->

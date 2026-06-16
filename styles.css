@@ -353,8 +353,8 @@ p { color: var(--slate); line-height: 1.7; }
 .ctag:hover { background: var(--blue-50); border-color: var(--blue-100); color: var(--blue); }
 
 /* ── Hero Slider ── */
-.hero-slider { display: flex; width: 100%; overflow: hidden; }
-.hero-slide { min-width: 100%; width: 100%; flex-shrink: 0; transition: transform .6s cubic-bezier(.4,0,.2,1); }
+.hero-slider { display: flex; width: 100%; transition: transform .6s cubic-bezier(.4,0,.2,1); }
+.hero-slide { min-width: 100%; width: 100%; flex-shrink: 0; }
 
 .hero-dots {
   position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
@@ -379,6 +379,96 @@ p { color: var(--slate); line-height: 1.7; }
 .hero-arrow:hover { background: #fff; box-shadow: 0 4px 20px rgba(13,31,60,.14); }
 .hero-prev { left: 16px; }
 .hero-next { right: 16px; }
+
+/* ── Slide 1 full-width layout ── */
+.hero-grid--full { grid-template-columns: 1fr; max-width: 720px; margin: 0 auto; }
+.hero-copy--wide { max-width: 100%; }
+.slide1-skills {
+  display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0;
+}
+.skill-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 999px; padding: 8px 18px;
+  font-size: .88rem; font-weight: 600; color: var(--navy);
+  box-shadow: 0 2px 8px rgba(13,31,60,.06);
+}
+.skill-icon { font-size: 1rem; }
+
+/* ── Our Work section ── */
+.our-work { padding: 80px 0; background: var(--bg-alt); }
+.our-work .section-label { text-align: center; margin-bottom: 8px; }
+.our-work h2 { text-align: center; margin-bottom: 8px; }
+.our-work .section-sub { text-align: center; color: var(--slate); margin-bottom: 48px; font-size: 1.05rem; }
+.work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 860px; margin: 0 auto; }
+
+.work-card {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--white);
+  box-shadow: 0 4px 20px rgba(13,31,60,.07);
+  transition: transform .25s, box-shadow .25s;
+  text-decoration: none; display: flex; flex-direction: column;
+}
+.work-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(13,31,60,.13); }
+
+.work-browser-bar {
+  display: flex; align-items: center; gap: 6px;
+  background: #f1f3f8; padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.work-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.work-dot.r { background: #ff5f57; }
+.work-dot.y { background: #febc2e; }
+.work-dot.g { background: #28c840; }
+.work-url {
+  margin-left: 8px; font-size: .7rem; color: #8a94a6;
+  font-family: monospace; white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; background: #fff;
+  border: 1px solid #e0e3ea; border-radius: 4px;
+  padding: 2px 10px; flex: 1;
+}
+
+.work-preview {
+  height: 160px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.work-preview.drive { background: linear-gradient(150deg, #0d1f3c 0%, #1a3a72 60%, #1d6ff2 100%); }
+.work-preview.ortho { background: linear-gradient(150deg, #0a2540 0%, #0f4c7a 60%, #0891b2 100%); }
+
+.work-preview-nav {
+  height: 14px; background: rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  display: flex; align-items: center; gap: 12px; padding: 0 14px;
+}
+.work-preview-nav span { width: 28px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.18); }
+.work-preview-nav span.act { background: rgba(255,255,255,.5); }
+
+.work-preview-body {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px; padding: 16px;
+}
+.work-preview-title { font-size: 1.05rem; font-weight: 800; color: #fff; letter-spacing: .02em; }
+.work-preview-sub { font-size: .72rem; color: rgba(255,255,255,.6); }
+.work-preview-cta {
+  margin-top: 8px; padding: 5px 18px; border-radius: 999px;
+  background: rgba(255,255,255,.15); color: #fff;
+  font-size: .7rem; font-weight: 600; border: 1px solid rgba(255,255,255,.25);
+}
+
+.work-info { padding: 16px 20px; }
+.work-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.work-desc { font-size: .82rem; color: var(--slate); margin-bottom: 10px; }
+.work-tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.work-tag {
+  font-size: .7rem; font-weight: 600; padding: 3px 10px;
+  border-radius: 999px; background: var(--blue-50);
+  color: var(--blue); border: 1px solid var(--blue-100);
+}
+.work-visit {
+  margin-top: 14px; display: inline-flex; align-items: center; gap: 6px;
+  font-size: .82rem; font-weight: 600; color: var(--blue);
+}
 
 /* ── Portfolio slide cards ── */
 .portfolio-card { padding: 24px; display: flex; flex-direction: column; gap: 16px; }

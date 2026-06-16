@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // ── Typing animation ──
   var taglineEl = document.getElementById('tagline-text');
   if (taglineEl) {
-    var phrases = ['Secure. Scalable. Intelligent.', 'Built for the cloud.', 'AI-powered solutions.', 'Zero-trust security.', 'Real-time observability.'];
+    var phrases = ['Secure. Scalable. Intelligent.', 'Distributed Systems experts.', 'Event-Driven Architecture.', 'Built for the cloud.', 'Zero-trust security.', 'Real-time observability.'];
     var pIdx = 0, cIdx = 0, deleting = false;
     function type() {
       var current = phrases[pIdx];

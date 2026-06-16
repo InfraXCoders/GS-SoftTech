@@ -366,6 +366,31 @@ p { color: var(--slate); line-height: 1.7; }
 }
 .card .more:hover { gap: 10px; color: var(--cyan); }
 
+/* ── Architecture card ── */
+.arch-card-inner {
+  display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: start;
+}
+.arch-left .icon { margin-bottom: 16px; }
+.arch-left h3 { margin-bottom: 10px; }
+.arch-left p { font-size: .95rem; }
+.arch-left .more { margin-top: 20px; }
+
+.arch-pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.arch-pillar {
+  padding: 20px; border-radius: 12px;
+  background: var(--bg-alt); border: 1px solid var(--border);
+  transition: border-color .25s, box-shadow .25s;
+}
+.arch-pillar:hover { border-color: var(--blue-100); box-shadow: var(--shadow); }
+.arch-pill-icon { font-size: 1.5rem; display: block; margin-bottom: 10px; }
+.arch-pillar h4 { font-size: .95rem; color: var(--navy); margin-bottom: 8px; font-weight: 700; }
+.arch-pillar p { font-size: .85rem; line-height: 1.6; }
+
+@media (max-width: 960px) {
+  .arch-card-inner { grid-template-columns: 1fr; }
+  .arch-pillars { grid-template-columns: 1fr; }
+}
+
 /* ── Feature split ── */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
 .feature-list { list-style: none; margin-top: 24px; }

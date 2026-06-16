@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ── Card spotlight (mouse-follow glow) ──
-  document.querySelectorAll('.card').forEach(function (card) {
+  document.querySelectorAll('.card, .cloud-card').forEach(function (card) {
     card.addEventListener('mousemove', function (e) {
       var rect = card.getBoundingClientRect();
       card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');

@@ -291,15 +291,101 @@ p { color: var(--slate); line-height: 1.7; }
 
 .status-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); animation: blink 2s ease-in-out infinite; margin-right: 5px; }
 
-/* Tech stack badges */
-.tech-stack { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
-.tech-badge {
-  font-size: .72rem; font-weight: 600; padding: 5px 12px; border-radius: 6px;
-  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
-  color: var(--slate-light);
+/* ── Tech showcase (chip orbit) ── */
+.tech-showcase { padding: 28px 28px 24px; }
+
+.showcase-label {
+  font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--slate);
+  text-align: center; margin-bottom: 20px;
+}
+
+.chip-orbit {
+  position: relative; width: 320px; height: 320px;
+  margin: 0 auto;
+}
+
+.orbit-lines {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0;
+}
+
+/* Central core */
+.core-ring {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px; height: 90px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(41,121,255,.2), rgba(0,229,255,.1));
+  border: 1px solid rgba(41,121,255,.4);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  z-index: 2;
+  box-shadow: 0 0 30px rgba(41,121,255,.25), 0 0 60px rgba(41,121,255,.1);
+  animation: corePulse 3s ease-in-out infinite;
+}
+@keyframes corePulse {
+  0%,100% { box-shadow: 0 0 30px rgba(41,121,255,.25), 0 0 60px rgba(41,121,255,.1); }
+  50%      { box-shadow: 0 0 50px rgba(41,121,255,.45), 0 0 80px rgba(0,229,255,.15); }
+}
+.core-ring svg { color: var(--cyan); }
+.core-ring span { font-size: .65rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan); }
+
+/* Orbit chips — positioned on a 120px radius circle */
+.orbit-chip {
+  position: absolute; z-index: 3;
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  cursor: default;
+  transform: translate(-50%, -50%);
+  transition: transform .25s ease, filter .25s ease;
+}
+.orbit-chip:hover { transform: translate(-50%, -50%) scale(1.15); filter: brightness(1.25); }
+
+/* top */
+.chip-1  { top: calc(50% - 120px); left: 50%; }
+/* top-right */
+.chip-2  { top: calc(50% - 60px);  left: calc(50% + 104px); }
+/* bottom-right */
+.chip-3  { top: calc(50% + 60px);  left: calc(50% + 104px); }
+/* bottom */
+.chip-4  { top: calc(50% + 120px); left: 50%; }
+/* bottom-left */
+.chip-5  { top: calc(50% + 60px);  left: calc(50% - 104px); }
+/* top-left */
+.chip-6  { top: calc(50% - 60px);  left: calc(50% - 104px); }
+
+.chip-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; line-height: 1;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  transition: background .25s, border-color .25s, box-shadow .25s;
+}
+.orbit-chip:hover .chip-icon {
+  background: rgba(41,121,255,.18);
+  border-color: rgba(41,121,255,.5);
+  box-shadow: 0 0 20px rgba(41,121,255,.35);
+}
+.chip-name {
+  font-size: .68rem; font-weight: 700; color: var(--slate-light);
+  letter-spacing: .05em; white-space: nowrap;
+  transition: color .25s;
+}
+.orbit-chip:hover .chip-name { color: var(--cyan); }
+
+/* Bottom tag row */
+.chip-tags {
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  margin-top: 20px;
+}
+.ctag {
+  font-size: .72rem; font-weight: 600; padding: 5px 13px; border-radius: 99px;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
+  color: var(--slate);
   transition: background .2s, border-color .2s, color .2s;
 }
-.tech-badge:hover { background: rgba(41,121,255,.15); border-color: rgba(41,121,255,.4); color: var(--cyan); }
+.ctag:hover { background: rgba(41,121,255,.15); border-color: rgba(41,121,255,.4); color: var(--cyan); }
 
 /* ── Trust bar ── */
 .trust {

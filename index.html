@@ -61,49 +61,64 @@
     </div>
 
     <div class="hero-visual">
-      <div class="hero-card">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <span class="d-red"></span><span class="d-yellow"></span><span class="d-green"></span>
+      <div class="hero-card tech-showcase">
+        <div class="showcase-label">Powered by modern technology</div>
+
+        <div class="chip-orbit">
+          <!-- Centre core -->
+          <div class="core-ring">
+            <div class="core-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="32" height="32"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5L19 19M19 5l-2.5 2.5M7.5 16.5L5 19"/></svg>
+            </div>
+            <span>GS Core</span>
           </div>
-          <span class="terminal-title">gs-softtech ~ infrastructure</span>
-        </div>
-        <div class="terminal-body">
-          <div class="terminal-line"><span class="t-prompt">❯</span><span class="t-cmd">gs deploy --env production</span></div>
-          <div class="terminal-line"><span class="t-out t-green">✔ Build complete</span></div>
-          <div class="terminal-line"><span class="t-out t-blue">↑ Pushing to cloud cluster...</span></div>
-          <div class="terminal-line"><span class="t-out t-green">✔ 3/3 replicas healthy</span></div>
-          <div class="terminal-line"><span class="t-out t-cyan">⚡ Auto-scaling: active</span></div>
-          <div class="terminal-line"><span class="t-out t-purple">🛡 Security scan: passed</span></div>
-          <div class="terminal-line"><span class="t-prompt">❯</span><span class="t-cmd t-blink">_</span></div>
+
+          <!-- Ring chips -->
+          <div class="orbit-chip chip-1">
+            <span class="chip-icon">☸</span>
+            <span class="chip-name">Kubernetes</span>
+          </div>
+          <div class="orbit-chip chip-2">
+            <span class="chip-icon">🐳</span>
+            <span class="chip-name">Docker</span>
+          </div>
+          <div class="orbit-chip chip-3">
+            <span class="chip-icon">🤖</span>
+            <span class="chip-name">AI / ML</span>
+          </div>
+          <div class="orbit-chip chip-4">
+            <span class="chip-icon">☁️</span>
+            <span class="chip-name">AWS</span>
+          </div>
+          <div class="orbit-chip chip-5">
+            <span class="chip-icon">🔐</span>
+            <span class="chip-name">Security</span>
+          </div>
+          <div class="orbit-chip chip-6">
+            <span class="chip-icon">⚡</span>
+            <span class="chip-name">React</span>
+          </div>
+
+          <!-- SVG connector lines -->
+          <svg class="orbit-lines" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="180" cy="180" r="120" fill="none" stroke="rgba(41,121,255,0.15)" stroke-width="1" stroke-dasharray="4 6"/>
+            <line x1="180" y1="180" x2="180" y2="60"  stroke="rgba(0,229,255,0.2)" stroke-width="1"/>
+            <line x1="180" y1="180" x2="284" y2="120" stroke="rgba(0,229,255,0.2)" stroke-width="1"/>
+            <line x1="180" y1="180" x2="284" y2="240" stroke="rgba(0,229,255,0.2)" stroke-width="1"/>
+            <line x1="180" y1="180" x2="180" y2="300" stroke="rgba(0,229,255,0.2)" stroke-width="1"/>
+            <line x1="180" y1="180" x2="76"  y2="240" stroke="rgba(0,229,255,0.2)" stroke-width="1"/>
+            <line x1="180" y1="180" x2="76"  y2="120" stroke="rgba(0,229,255,0.2)" stroke-width="1"/>
+          </svg>
         </div>
 
-        <div class="metrics-panel">
-          <h4>Live System Metrics</h4>
-          <div class="metric-row">
-            <span class="metric-label"><span class="status-dot"></span>CPU Usage</span>
-            <div class="metric-bar bar-blue"><i style="width:34%"></i></div>
-            <span class="metric-value t-green">34%</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label"><span class="status-dot"></span>Memory</span>
-            <div class="metric-bar bar-purple"><i style="width:61%"></i></div>
-            <span class="metric-value t-cyan">61%</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label"><span class="status-dot"></span>Uptime</span>
-            <div class="metric-bar bar-green"><i style="width:99%"></i></div>
-            <span class="metric-value t-green">99.9%</span>
-          </div>
-        </div>
-
-        <div class="tech-stack">
-          <span class="tech-badge">Kubernetes</span>
-          <span class="tech-badge">Docker</span>
-          <span class="tech-badge">React</span>
-          <span class="tech-badge">Node.js</span>
-          <span class="tech-badge">AWS</span>
-          <span class="tech-badge">AI/ML</span>
+        <!-- Bottom tag row -->
+        <div class="chip-tags">
+          <span class="ctag">Node.js</span>
+          <span class="ctag">Python</span>
+          <span class="ctag">Terraform</span>
+          <span class="ctag">CI/CD</span>
+          <span class="ctag">Zero-Trust</span>
+          <span class="ctag">Monitoring</span>
         </div>
       </div>
     </div>

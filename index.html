@@ -7,277 +7,299 @@
   <meta name="description" content="GS SoftTech delivers custom web applications, cloud solutions, infrastructure monitoring, cybersecurity, container platforms, and AI-powered technology solutions tailored to your business." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container nav">
-      <a href="index.html" class="brand"><span class="logo-mark">GS</span><span class="brand-text"><span class="brand-name">GS SoftTech</span><span class="brand-sub">Solutions</span></span></a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li class="nav-cta"><a href="contact.html" class="btn btn-primary">Get in touch</a></li>
-      </ul>
-      <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-    </div>
-  </header>
+<div id="scroll-progress"></div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Technology consulting &amp; software solutions</span>
-        <h1>GS SoftTech</h1>
-        <div class="tagline">Secure. Scalable. Intelligent.</div>
-        <p class="lead">We deliver custom web applications, cloud solutions, infrastructure monitoring, cybersecurity, container platforms, and AI-powered technology tailored to your business needs.</p>
-        <div class="hero-actions">
-          <a href="services.html" class="btn btn-primary">Explore services →</a>
-          <a href="contact.html" class="btn btn-ghost">Book a consultation</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat"><strong>24/7</strong><span>Infrastructure monitoring</span></div>
-          <div class="stat"><strong>99.9%</strong><span>Uptime focus</span></div>
-          <div class="stat"><strong>End-to-end</strong><span>Secure by design</span></div>
-        </div>
+<!-- Header -->
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand">
+      <span class="logo-mark">GS</span>
+      <span class="brand-text">
+        <span class="brand-name">GS SoftTech</span>
+        <span class="brand-sub">Solutions</span>
+      </span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="nav-cta"><a href="contact.html" class="btn btn-primary">Get in touch</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <canvas id="hero-canvas"></canvas>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="hero-badge"><span class="dot"></span>Technology Consulting &amp; Software Solutions</div>
+      <h1>GS SoftTech</h1>
+      <div class="tagline"><span id="tagline-text"></span><span class="tagline-cursor"></span></div>
+      <p class="lead">We deliver custom web applications, cloud solutions, infrastructure monitoring, cybersecurity, container platforms, and AI-powered technology tailored to your business needs.</p>
+      <div class="hero-actions">
+        <a href="services.html" class="btn btn-primary">Explore services →</a>
+        <a href="contact.html" class="btn btn-ghost">Book a consultation</a>
       </div>
-      <div class="hero-visual">
-        <span class="hv-glow"></span>
-        <svg class="ai-diagram" viewBox="0 0 360 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI chipset and neural network diagram">
-          <defs>
-            <linearGradient id="chipGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#1f6feb"/><stop offset="1" stop-color="#00b8d4"/>
-            </linearGradient>
-            <radialGradient id="nodeGrad" cx="40%" cy="35%" r="70%">
-              <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#7ecbff"/>
-            </radialGradient>
-            <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7"/></filter>
-          </defs>
-
-          <!-- water / sky bubbles -->
-          <circle cx="62" cy="64" r="48" fill="#bfe3ff" opacity=".55" filter="url(#soft)"/>
-          <circle cx="305" cy="225" r="58" fill="#a6e7f6" opacity=".5" filter="url(#soft)"/>
-          <circle cx="250" cy="52" r="30" fill="#cfeffd" opacity=".6" filter="url(#soft)"/>
-
-          <!-- circuit traces -->
-          <g fill="none" stroke="#5fb0ef" stroke-width="2" stroke-linecap="round" opacity=".75">
-            <path id="t1" d="M150 116 L70 60"/>
-            <path id="t2" d="M210 116 L290 60"/>
-            <path id="t3" d="M150 184 L70 244"/>
-            <path id="t4" d="M210 184 L296 232"/>
-            <path id="t5" d="M180 110 L180 42"/>
-            <path id="t6" d="M180 190 L180 260"/>
-          </g>
-
-          <!-- data pulses travelling along traces -->
-          <g fill="#ffffff">
-            <circle r="3.4"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#t1"/></animateMotion></circle>
-            <circle r="3.4"><animateMotion dur="2.9s" repeatCount="indefinite" begin="-1s"><mpath href="#t2"/></animateMotion></circle>
-            <circle r="3.4"><animateMotion dur="3.1s" repeatCount="indefinite" begin="-1.6s"><mpath href="#t3"/></animateMotion></circle>
-            <circle r="3.4"><animateMotion dur="2.7s" repeatCount="indefinite" begin="-0.6s"><mpath href="#t4"/></animateMotion></circle>
-            <circle r="3.4"><animateMotion dur="3.0s" repeatCount="indefinite" begin="-2s"><mpath href="#t5"/></animateMotion></circle>
-            <circle r="3.4"><animateMotion dur="2.5s" repeatCount="indefinite" begin="-1.2s"><mpath href="#t6"/></animateMotion></circle>
-          </g>
-
-          <!-- neural nodes -->
-          <g stroke="#1f6feb" stroke-width="1.5">
-            <circle class="pulse-node" cx="70" cy="60" r="9" fill="url(#nodeGrad)"/>
-            <circle class="pulse-node" cx="290" cy="60" r="9" fill="url(#nodeGrad)"/>
-            <circle class="pulse-node" cx="70" cy="244" r="9" fill="url(#nodeGrad)"/>
-            <circle class="pulse-node" cx="296" cy="232" r="9" fill="url(#nodeGrad)"/>
-            <circle class="pulse-node" cx="180" cy="42" r="9" fill="url(#nodeGrad)"/>
-            <circle class="pulse-node" cx="180" cy="260" r="9" fill="url(#nodeGrad)"/>
-          </g>
-
-          <!-- chip pins -->
-          <g fill="#8fc7f7">
-            <rect x="150" y="102" width="5" height="9" rx="1.5"/><rect x="164" y="102" width="5" height="9" rx="1.5"/><rect x="178" y="102" width="5" height="9" rx="1.5"/><rect x="192" y="102" width="5" height="9" rx="1.5"/><rect x="206" y="102" width="5" height="9" rx="1.5"/>
-            <rect x="150" y="189" width="5" height="9" rx="1.5"/><rect x="164" y="189" width="5" height="9" rx="1.5"/><rect x="178" y="189" width="5" height="9" rx="1.5"/><rect x="192" y="189" width="5" height="9" rx="1.5"/><rect x="206" y="189" width="5" height="9" rx="1.5"/>
-            <rect x="131" y="120" width="9" height="5" rx="1.5"/><rect x="131" y="134" width="9" height="5" rx="1.5"/><rect x="131" y="148" width="9" height="5" rx="1.5"/><rect x="131" y="162" width="9" height="5" rx="1.5"/><rect x="131" y="176" width="9" height="5" rx="1.5"/>
-            <rect x="220" y="120" width="9" height="5" rx="1.5"/><rect x="220" y="134" width="9" height="5" rx="1.5"/><rect x="220" y="148" width="9" height="5" rx="1.5"/><rect x="220" y="162" width="9" height="5" rx="1.5"/><rect x="220" y="176" width="9" height="5" rx="1.5"/>
-          </g>
-
-          <!-- AI chip body -->
-          <rect x="140" y="110" width="80" height="80" rx="15" fill="url(#chipGrad)"/>
-          <rect x="140" y="110" width="80" height="80" rx="15" fill="none" stroke="#ffffff" stroke-opacity=".4" stroke-width="1.5"/>
-          <rect x="155" y="125" width="50" height="50" rx="9" fill="#0a2540" fill-opacity=".16" stroke="#ffffff" stroke-opacity=".45" stroke-width="1"/>
-          <g fill="#ffffff" fill-opacity=".55">
-            <circle cx="150" cy="120" r="2.2"/><circle cx="210" cy="120" r="2.2"/><circle cx="150" cy="180" r="2.2"/><circle cx="210" cy="180" r="2.2"/>
-          </g>
-          <text x="180" y="158" text-anchor="middle" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="21" font-weight="800" letter-spacing="1.5">AI</text>
-        </svg>
-        <div class="hero-badges">
-          <span>Neural Networks</span><span>Machine Learning</span><span>Automation</span><span>Analytics</span>
-        </div>
+      <div class="hero-stats">
+        <div class="stat"><strong><span class="count" data-target="99.9" data-suffix="%">0</span></strong><span>Uptime focus</span></div>
+        <div class="stat"><strong><span class="count" data-target="24" data-suffix="/7">0</span></strong><span>Monitoring</span></div>
+        <div class="stat"><strong><span class="count" data-target="100" data-suffix="%">0</span></strong><span>Secure by design</span></div>
       </div>
     </div>
-  </section>
 
-  <!-- Trust bar -->
-  <div class="trust">
-    <div class="container trust-inner">
-      <p>Built for the modern enterprise</p>
-      <span class="pill">Web</span>
-      <span class="pill">Cloud</span>
-      <span class="pill">Security</span>
-      <span class="pill">Containers</span>
-      <span class="pill">AI</span>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="d-red"></span><span class="d-yellow"></span><span class="d-green"></span>
+          </div>
+          <span class="terminal-title">gs-softtech ~ infrastructure</span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line"><span class="t-prompt">❯</span><span class="t-cmd">gs deploy --env production</span></div>
+          <div class="terminal-line"><span class="t-out t-green">✔ Build complete</span></div>
+          <div class="terminal-line"><span class="t-out t-blue">↑ Pushing to cloud cluster...</span></div>
+          <div class="terminal-line"><span class="t-out t-green">✔ 3/3 replicas healthy</span></div>
+          <div class="terminal-line"><span class="t-out t-cyan">⚡ Auto-scaling: active</span></div>
+          <div class="terminal-line"><span class="t-out t-purple">🛡 Security scan: passed</span></div>
+          <div class="terminal-line"><span class="t-prompt">❯</span><span class="t-cmd t-blink">_</span></div>
+        </div>
+
+        <div class="metrics-panel">
+          <h4>Live System Metrics</h4>
+          <div class="metric-row">
+            <span class="metric-label"><span class="status-dot"></span>CPU Usage</span>
+            <div class="metric-bar bar-blue"><i style="width:34%"></i></div>
+            <span class="metric-value t-green">34%</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label"><span class="status-dot"></span>Memory</span>
+            <div class="metric-bar bar-purple"><i style="width:61%"></i></div>
+            <span class="metric-value t-cyan">61%</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label"><span class="status-dot"></span>Uptime</span>
+            <div class="metric-bar bar-green"><i style="width:99%"></i></div>
+            <span class="metric-value t-green">99.9%</span>
+          </div>
+        </div>
+
+        <div class="tech-stack">
+          <span class="tech-badge">Kubernetes</span>
+          <span class="tech-badge">Docker</span>
+          <span class="tech-badge">React</span>
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">AWS</span>
+          <span class="tech-badge">AI/ML</span>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- Services overview -->
-  <section class="bg-alt">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">What we do</span>
-        <h2>Solutions that move your business forward</h2>
-        <p>From the first line of code to round-the-clock operations, we build technology that is secure by design, scales with demand, and works intelligently.</p>
+<!-- Trust bar -->
+<div class="trust">
+  <div class="trust-wrap">
+    <div class="trust-scroll">
+      <span class="trust-label">Built for the modern enterprise</span>
+      <span class="trust-pill">⚡ Web Development</span>
+      <span class="trust-pill">☁️ Cloud Solutions</span>
+      <span class="trust-pill">🔐 Cybersecurity</span>
+      <span class="trust-pill">📦 Containers</span>
+      <span class="trust-pill">🤖 AI &amp; ML</span>
+      <span class="trust-pill">📊 Monitoring</span>
+      <!-- duplicate for seamless loop -->
+      <span class="trust-label">Built for the modern enterprise</span>
+      <span class="trust-pill">⚡ Web Development</span>
+      <span class="trust-pill">☁️ Cloud Solutions</span>
+      <span class="trust-pill">🔐 Cybersecurity</span>
+      <span class="trust-pill">📦 Containers</span>
+      <span class="trust-pill">🤖 AI &amp; ML</span>
+      <span class="trust-pill">📊 Monitoring</span>
+    </div>
+  </div>
+</div>
+
+<!-- Services -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What we do</span>
+      <h2>Solutions that move your business forward</h2>
+      <p>From the first line of code to round-the-clock operations, we build technology that is secure by design, scales with demand, and works intelligently.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-6 9 6v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21V12h6v9"/></svg></div>
+        <h3>Custom Web Development</h3>
+        <p>Tailored web applications and platforms engineered for performance, accessibility, and growth.</p>
+        <a class="more" href="services.html#web">Learn more →</a>
       </div>
-      <div class="grid-3">
-        <div class="card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-6 9 6v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21V12h6v9"/></svg></div>
-          <h3>Custom Web Development</h3>
-          <p>Tailored web applications and platforms engineered for performance, accessibility, and growth.</p>
-          <a class="more" href="services.html#web">Learn more →</a>
-        </div>
-        <div class="card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.34 9 4.5 4.5 0 0 0 6.5 19z"/></svg></div>
-          <h3>Cloud Solutions</h3>
-          <p>Architecture, migration, and management across cloud platforms — elastic, resilient, cost-aware.</p>
-          <a class="more" href="services.html#cloud">Learn more →</a>
-        </div>
-        <div class="card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2 5 4-12 2 7h4"/></svg></div>
-          <h3>Infrastructure Monitoring</h3>
-          <p>Real-time visibility, alerting, and observability so issues are caught before they reach users.</p>
-          <a class="more" href="services.html#monitoring">Learn more →</a>
-        </div>
-        <div class="card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <h3>Cybersecurity Services</h3>
-          <p>Threat assessment, secure development, and zero-trust controls that protect what matters.</p>
-          <a class="more" href="services.html#security">Learn more →</a>
-        </div>
-        <div class="card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
-          <h3>Container Platforms</h3>
-          <p>Docker and Kubernetes platforms for portable, self-healing, automatically scaling workloads.</p>
-          <a class="more" href="services.html#containers">Learn more →</a>
-        </div>
-        <div class="card reveal">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5L19 19M19 5l-2.5 2.5M7.5 16.5L5 19"/></svg></div>
-          <h3>AI-Powered Solutions</h3>
-          <p>Automation, analytics, and intelligent features that turn your data into a competitive edge.</p>
-          <a class="more" href="services.html#ai">Learn more →</a>
-        </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.34 9 4.5 4.5 0 0 0 6.5 19z"/></svg></div>
+        <h3>Cloud Solutions</h3>
+        <p>Architecture, migration, and management across cloud platforms — elastic, resilient, cost-aware.</p>
+        <a class="more" href="services.html#cloud">Learn more →</a>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2 5 4-12 2 7h4"/></svg></div>
+        <h3>Infrastructure Monitoring</h3>
+        <p>Real-time visibility, alerting, and observability so issues are caught before they reach users.</p>
+        <a class="more" href="services.html#monitoring">Learn more →</a>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Cybersecurity Services</h3>
+        <p>Threat assessment, secure development, and zero-trust controls that protect what matters.</p>
+        <a class="more" href="services.html#security">Learn more →</a>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <h3>Container Platforms</h3>
+        <p>Docker and Kubernetes platforms for portable, self-healing, automatically scaling workloads.</p>
+        <a class="more" href="services.html#containers">Learn more →</a>
+      </div>
+      <div class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5L19 19M19 5l-2.5 2.5M7.5 16.5L5 19"/></svg></div>
+        <h3>AI-Powered Solutions</h3>
+        <p>Automation, analytics, and intelligent features that turn your data into a competitive edge.</p>
+        <a class="more" href="services.html#ai">Learn more →</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Why us / feature split -->
-  <section>
-    <div class="container split">
-      <div class="reveal">
-        <span class="eyebrow">Why GS SoftTech</span>
-        <h2>Engineering quality you can build on</h2>
-        <p>Our name is a promise: every solution we ship is secure by design, scales with your growth, and works intelligently to save you time and cost.</p>
-        <ul class="feature-list">
-          <li><span class="tick">✓</span><span><strong>Secure</strong> — security woven through every layer, from code review to infrastructure hardening.</span></li>
-          <li><span class="tick">✓</span><span><strong>Scalable</strong> — cloud-native, container-based architecture that grows with demand.</span></li>
-          <li><span class="tick">✓</span><span><strong>Intelligent</strong> — AI and automation that reduce manual work and surface insights.</span></li>
-          <li><span class="tick">✓</span><span><strong>Reliable</strong> — continuous monitoring and observability keep systems healthy 24/7.</span></li>
+<!-- Why us -->
+<section>
+  <div class="container split">
+    <div class="reveal-left">
+      <span class="eyebrow">Why GS SoftTech</span>
+      <h2>Engineering quality you can build on</h2>
+      <p>Our name is a promise: every solution we ship is secure by design, scales with your growth, and works intelligently to save you time and cost.</p>
+      <ul class="feature-list">
+        <li><span class="tick">✓</span><span><strong>Secure</strong> — security woven through every layer, from code review to infrastructure hardening.</span></li>
+        <li><span class="tick">✓</span><span><strong>Scalable</strong> — cloud-native, container-based architecture that grows with demand.</span></li>
+        <li><span class="tick">✓</span><span><strong>Intelligent</strong> — AI and automation that reduce manual work and surface insights.</span></li>
+        <li><span class="tick">✓</span><span><strong>Reliable</strong> — continuous monitoring and observability keep systems healthy 24/7.</span></li>
+      </ul>
+      <a href="about.html" class="btn btn-ghost" style="margin-top:20px">More about us →</a>
+    </div>
+    <div class="media-box reveal-right">
+      <div class="metric-item">
+        <span class="m-label">System uptime</span>
+        <span class="m-val">99.9%</span>
+      </div>
+      <div class="metric-item">
+        <span class="m-label">Deployment automation</span>
+        <div class="m-bar-wrap"><div class="m-bar"><i style="width:92%"></i></div><span class="m-val">92%</span></div>
+      </div>
+      <div class="metric-item">
+        <span class="m-label">Security coverage</span>
+        <div class="m-bar-wrap"><div class="m-bar"><i style="width:97%"></i></div><span class="m-val">97%</span></div>
+      </div>
+      <div class="metric-item">
+        <span class="m-label">Mean time to detect</span>
+        <span class="m-val">&lt; 2 min</span>
+      </div>
+      <div class="metric-item">
+        <span class="m-label">Auto-scaling response</span>
+        <span class="m-val">Real-time</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How we work -->
+<section class="bg-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">How we work</span>
+      <h2>A clear path from idea to impact</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">1</div><h3>Discover</h3><p>We learn your goals, constraints, and the outcomes that matter most.</p></div>
+      <div class="step reveal"><div class="num">2</div><h3>Design</h3><p>We architect a secure, scalable solution mapped to your roadmap.</p></div>
+      <div class="step reveal"><div class="num">3</div><h3>Build</h3><p>We develop, test, and automate with quality and security baked in.</p></div>
+      <div class="step reveal"><div class="num">4</div><h3>Operate</h3><p>We monitor, optimize, and evolve your systems as you grow.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="container">
+    <div class="cta-band reveal">
+      <h2>Let's build something secure, scalable, and intelligent.</h2>
+      <p>Tell us about your project and we'll show you how GS SoftTech can help your organization innovate and grow.</p>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-light">Start a conversation</a>
+        <a href="services.html" class="btn btn-outline-light">View all services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand">
+          <span class="logo-mark">GS</span>
+          <span class="brand-text"><span class="brand-name">GS SoftTech</span><span class="brand-sub">Solutions</span></span>
+        </a>
+        <p>Technology consulting and software solutions that help organizations innovate and grow. Secure. Scalable. Intelligent.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html#web">Web Development</a></li>
+          <li><a href="services.html#cloud">Cloud Solutions</a></li>
+          <li><a href="services.html#monitoring">Infrastructure Monitoring</a></li>
+          <li><a href="services.html#security">Cybersecurity</a></li>
+          <li><a href="services.html#ai">AI Solutions</a></li>
         </ul>
-        <a href="about.html" class="btn btn-ghost" style="margin-top:8px">More about us →</a>
       </div>
-      <div class="media-box reveal">
-        <div class="metric"><span>System uptime</span><b>99.9%</b></div>
-        <div class="metric"><span>Deployment automation</span><div><div class="bar"><i style="width:92%"></i></div></div></div>
-        <div class="metric"><span>Security coverage</span><div><div class="bar"><i style="width:97%"></i></div></div></div>
-        <div class="metric"><span>Mean time to detect</span><b>&lt; 2 min</b></div>
-        <div class="metric"><span>Auto-scaling response</span><b>Real-time</b></div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
       </div>
-    </div>
-  </section>
-
-  <!-- How we work -->
-  <section class="bg-alt">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">How we work</span>
-        <h2>A clear path from idea to impact</h2>
-      </div>
-      <div class="steps">
-        <div class="step reveal"><div class="num">1</div><h3>Discover</h3><p>We learn your goals, constraints, and the outcomes that matter most.</p></div>
-        <div class="step reveal"><div class="num">2</div><h3>Design</h3><p>We architect a secure, scalable solution mapped to your roadmap.</p></div>
-        <div class="step reveal"><div class="num">3</div><h3>Build</h3><p>We develop, test, and automate with quality and security baked in.</p></div>
-        <div class="step reveal"><div class="num">4</div><h3>Operate</h3><p>We monitor, optimize, and evolve your systems as you grow.</p></div>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:info@gssofttech.com">info@gssofttech.com</a></li>
+          <li><a href="contact.html">Request a consultation</a></li>
+        </ul>
       </div>
     </div>
-  </section>
-
-  <!-- CTA -->
-  <section>
-    <div class="container">
-      <div class="cta-band reveal">
-        <h2>Let's build something secure, scalable, and intelligent.</h2>
-        <p>Tell us about your project and we'll show you how GS SoftTech can help your organization innovate and grow.</p>
-        <div class="cta-actions">
-          <a href="contact.html" class="btn btn-light">Start a conversation</a>
-          <a href="services.html" class="btn btn-outline-light">View all services</a>
-        </div>
+    <div class="footer-bottom">
+      <p>© <span data-year>2026</span> GS SoftTech. All rights reserved.</p>
+      <div class="socials">
+        <a href="contact.html">in</a>
+        <a href="contact.html">gh</a>
+        <a href="contact.html">𝕏</a>
       </div>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <a href="index.html" class="brand"><span class="logo-mark">GS</span><span class="brand-text"><span class="brand-name">GS SoftTech</span><span class="brand-sub">Solutions</span></span></a>
-          <p>Technology consulting and software solutions that help organizations innovate and grow. Secure. Scalable. Intelligent.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="services.html#web">Web Development</a></li>
-            <li><a href="services.html#cloud">Cloud Solutions</a></li>
-            <li><a href="services.html#monitoring">Infrastructure Monitoring</a></li>
-            <li><a href="services.html#security">Cybersecurity</a></li>
-            <li><a href="services.html#ai">AI Solutions</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Get in touch</h4>
-          <ul>
-            <li><a href="mailto:info@gssofttech.com">info@gssofttech.com</a></li>
-            <li><a href="contact.html">Request a consultation</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© <span data-year>2026</span> GS SoftTech. All rights reserved.</p>
-        <div class="socials">
-          <a href="contact.html">LinkedIn</a>
-          <a href="contact.html">GitHub</a>
-          <a href="contact.html">X</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

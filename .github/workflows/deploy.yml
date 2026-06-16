@@ -11,40 +11,47 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ── 1. Checkout code ──────────────────────────────────────────────────
+      # ── 1. Checkout ───────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ── 2. Set up SSH agent with the private key ──────────────────────────
+      # ── 2. Set up SSH key ─────────────────────────────────────
       - name: Set up SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
+          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H -p ${{ secrets.VPS_PORT }} ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+          # Add host to known_hosts (ignore failure — StrictHostKeyChecking=no used below)
+          ssh-keyscan -H -p "${{ secrets.VPS_PORT }}" "${{ secrets.VPS_HOST }}" \
+            >> ~/.ssh/known_hosts 2>/dev/null || true
 
-      # ── 3. Rsync files to server ──────────────────────────────────────────
+      # ── 3. Deploy files via rsync ─────────────────────────────
       - name: Deploy files via rsync
         run: |
           rsync -avz --delete \
             --exclude='.git/' \
             --exclude='.github/' \
+            --exclude='server/' \
             --exclude='*.md' \
-            -e "ssh -p ${{ secrets.VPS_PORT }} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+            -e "ssh -p ${{ secrets.VPS_PORT }} \
+                    -i ~/.ssh/id_rsa \
+                    -o StrictHostKeyChecking=no \
+                    -o UserKnownHostsFile=/dev/null" \
             ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/gssofttech.com/html/
 
-      # ── 4. Set correct permissions on server ─────────────────────────────
-      - name: Fix file permissions
+      # ── 4. Fix permissions & reload Nginx ─────────────────────
+      - name: Fix permissions and reload Nginx
         run: |
-          ssh -p ${{ secrets.VPS_PORT }} \
+          ssh -p "${{ secrets.VPS_PORT }}" \
               -i ~/.ssh/id_rsa \
               -o StrictHostKeyChecking=no \
-              ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
+              -o UserKnownHostsFile=/dev/null \
+              "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
               "sudo chown -R www-data:www-data /var/www/gssofttech.com/html && \
                sudo chmod -R 755 /var/www/gssofttech.com/html && \
                sudo nginx -t && \
                sudo systemctl reload nginx"
 
-      # ── 5. Notify success ─────────────────────────────────────────────────
+      # ── 5. Done ───────────────────────────────────────────────
       - name: Deployment complete
         run: echo "✅ gssofttech.com deployed successfully"

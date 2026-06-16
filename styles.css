@@ -128,18 +128,30 @@ p { color: var(--slate); }
 .hero-stats .stat strong { display:block; font-size: 1.7rem; color: var(--navy); font-weight: 800; }
 .hero-stats .stat span { font-size: .85rem; color: var(--slate-light); }
 
-/* Hero visual card */
+/* Hero visual card — water / sky AI theme */
 .hero-visual {
-  position: relative; background: var(--navy); border-radius: 18px; padding: 26px;
-  box-shadow: var(--shadow-lg); color: #cde0f5;
+  position: relative; overflow: hidden;
+  background: linear-gradient(165deg, #eef8ff 0%, #daefff 50%, #cdeefb 100%);
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 20px; padding: 22px 22px 24px;
+  box-shadow: var(--shadow-lg);
 }
-.hero-visual .vcard-top { display:flex; align-items:center; gap:8px; margin-bottom: 18px; }
-.hero-visual .dot { width: 11px; height: 11px; border-radius: 50%; background:#37557a; }
-.hero-visual .dot.g { background:#2ecc71; } .hero-visual .dot.y { background:#f1c40f; } .hero-visual .dot.r { background:#e74c3c; }
-.code-line { font-family: "SF Mono", ui-monospace, Menlo, monospace; font-size: .82rem; line-height: 1.9; color:#9db8d6; }
-.code-line .k { color:#7ee7ff; } .code-line .s { color:#9be39b; } .code-line .m { color:#5e7ea8; }
-.hero-badges { display:flex; gap:10px; flex-wrap:wrap; margin-top: 18px; }
-.hero-badges span { font-size:.74rem; font-weight:600; padding:6px 11px; border-radius:99px; background: rgba(255,255,255,.08); color:#bcd5f2; border:1px solid rgba(255,255,255,.12); }
+.hv-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(440px 220px at 75% 12%, rgba(255,255,255,.75), transparent 62%);
+}
+.ai-diagram { position: relative; z-index: 1; width: 100%; height: auto; display: block; }
+.ai-diagram .pulse-node { animation: nodePulse 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes nodePulse { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+.hero-badges { position: relative; z-index: 1; display: flex; gap: 9px; flex-wrap: wrap; margin-top: 16px; justify-content: center; }
+.hero-badges span {
+  font-size: .74rem; font-weight: 600; padding: 6px 12px; border-radius: 99px;
+  background: rgba(255,255,255,.72); color: var(--navy-700); border: 1px solid rgba(31,111,235,.18);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ai-diagram .pulse-node { animation: none; }
+  .ai-diagram animateMotion { display: none; }
+}
 
 /* ---------- Trust bar ---------- */
 .trust { padding: 34px 0; border-bottom: 1px solid var(--border); background:#fff; }

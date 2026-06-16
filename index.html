@@ -46,16 +46,72 @@
         </div>
       </div>
       <div class="hero-visual">
-        <div class="vcard-top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
-        <div class="code-line"><span class="m"># deploy.gssofttech</span></div>
-        <div class="code-line"><span class="k">service</span>: <span class="s">"web-app"</span></div>
-        <div class="code-line"><span class="k">scaling</span>: <span class="s">auto</span> &nbsp;<span class="m">// containers</span></div>
-        <div class="code-line"><span class="k">security</span>: <span class="s">enforced</span></div>
-        <div class="code-line"><span class="k">monitoring</span>: <span class="s">enabled</span></div>
-        <div class="code-line"><span class="k">ai_insights</span>: <span class="s">on</span></div>
-        <div class="code-line"><span class="m">✓ build passed · 0 vulnerabilities</span></div>
+        <span class="hv-glow"></span>
+        <svg class="ai-diagram" viewBox="0 0 360 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI chipset and neural network diagram">
+          <defs>
+            <linearGradient id="chipGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#1f6feb"/><stop offset="1" stop-color="#00b8d4"/>
+            </linearGradient>
+            <radialGradient id="nodeGrad" cx="40%" cy="35%" r="70%">
+              <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#7ecbff"/>
+            </radialGradient>
+            <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="7"/></filter>
+          </defs>
+
+          <!-- water / sky bubbles -->
+          <circle cx="62" cy="64" r="48" fill="#bfe3ff" opacity=".55" filter="url(#soft)"/>
+          <circle cx="305" cy="225" r="58" fill="#a6e7f6" opacity=".5" filter="url(#soft)"/>
+          <circle cx="250" cy="52" r="30" fill="#cfeffd" opacity=".6" filter="url(#soft)"/>
+
+          <!-- circuit traces -->
+          <g fill="none" stroke="#5fb0ef" stroke-width="2" stroke-linecap="round" opacity=".75">
+            <path id="t1" d="M150 116 L70 60"/>
+            <path id="t2" d="M210 116 L290 60"/>
+            <path id="t3" d="M150 184 L70 244"/>
+            <path id="t4" d="M210 184 L296 232"/>
+            <path id="t5" d="M180 110 L180 42"/>
+            <path id="t6" d="M180 190 L180 260"/>
+          </g>
+
+          <!-- data pulses travelling along traces -->
+          <g fill="#ffffff">
+            <circle r="3.4"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#t1"/></animateMotion></circle>
+            <circle r="3.4"><animateMotion dur="2.9s" repeatCount="indefinite" begin="-1s"><mpath href="#t2"/></animateMotion></circle>
+            <circle r="3.4"><animateMotion dur="3.1s" repeatCount="indefinite" begin="-1.6s"><mpath href="#t3"/></animateMotion></circle>
+            <circle r="3.4"><animateMotion dur="2.7s" repeatCount="indefinite" begin="-0.6s"><mpath href="#t4"/></animateMotion></circle>
+            <circle r="3.4"><animateMotion dur="3.0s" repeatCount="indefinite" begin="-2s"><mpath href="#t5"/></animateMotion></circle>
+            <circle r="3.4"><animateMotion dur="2.5s" repeatCount="indefinite" begin="-1.2s"><mpath href="#t6"/></animateMotion></circle>
+          </g>
+
+          <!-- neural nodes -->
+          <g stroke="#1f6feb" stroke-width="1.5">
+            <circle class="pulse-node" cx="70" cy="60" r="9" fill="url(#nodeGrad)"/>
+            <circle class="pulse-node" cx="290" cy="60" r="9" fill="url(#nodeGrad)"/>
+            <circle class="pulse-node" cx="70" cy="244" r="9" fill="url(#nodeGrad)"/>
+            <circle class="pulse-node" cx="296" cy="232" r="9" fill="url(#nodeGrad)"/>
+            <circle class="pulse-node" cx="180" cy="42" r="9" fill="url(#nodeGrad)"/>
+            <circle class="pulse-node" cx="180" cy="260" r="9" fill="url(#nodeGrad)"/>
+          </g>
+
+          <!-- chip pins -->
+          <g fill="#8fc7f7">
+            <rect x="150" y="102" width="5" height="9" rx="1.5"/><rect x="164" y="102" width="5" height="9" rx="1.5"/><rect x="178" y="102" width="5" height="9" rx="1.5"/><rect x="192" y="102" width="5" height="9" rx="1.5"/><rect x="206" y="102" width="5" height="9" rx="1.5"/>
+            <rect x="150" y="189" width="5" height="9" rx="1.5"/><rect x="164" y="189" width="5" height="9" rx="1.5"/><rect x="178" y="189" width="5" height="9" rx="1.5"/><rect x="192" y="189" width="5" height="9" rx="1.5"/><rect x="206" y="189" width="5" height="9" rx="1.5"/>
+            <rect x="131" y="120" width="9" height="5" rx="1.5"/><rect x="131" y="134" width="9" height="5" rx="1.5"/><rect x="131" y="148" width="9" height="5" rx="1.5"/><rect x="131" y="162" width="9" height="5" rx="1.5"/><rect x="131" y="176" width="9" height="5" rx="1.5"/>
+            <rect x="220" y="120" width="9" height="5" rx="1.5"/><rect x="220" y="134" width="9" height="5" rx="1.5"/><rect x="220" y="148" width="9" height="5" rx="1.5"/><rect x="220" y="162" width="9" height="5" rx="1.5"/><rect x="220" y="176" width="9" height="5" rx="1.5"/>
+          </g>
+
+          <!-- AI chip body -->
+          <rect x="140" y="110" width="80" height="80" rx="15" fill="url(#chipGrad)"/>
+          <rect x="140" y="110" width="80" height="80" rx="15" fill="none" stroke="#ffffff" stroke-opacity=".4" stroke-width="1.5"/>
+          <rect x="155" y="125" width="50" height="50" rx="9" fill="#0a2540" fill-opacity=".16" stroke="#ffffff" stroke-opacity=".45" stroke-width="1"/>
+          <g fill="#ffffff" fill-opacity=".55">
+            <circle cx="150" cy="120" r="2.2"/><circle cx="210" cy="120" r="2.2"/><circle cx="150" cy="180" r="2.2"/><circle cx="210" cy="180" r="2.2"/>
+          </g>
+          <text x="180" y="158" text-anchor="middle" fill="#ffffff" font-family="Inter, system-ui, sans-serif" font-size="21" font-weight="800" letter-spacing="1.5">AI</text>
+        </svg>
         <div class="hero-badges">
-          <span>Cloud</span><span>Kubernetes</span><span>Zero-trust</span><span>AI/ML</span><span>DevOps</span>
+          <span>Neural Networks</span><span>Machine Learning</span><span>Automation</span><span>Analytics</span>
         </div>
       </div>
     </div>

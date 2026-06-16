@@ -153,6 +153,44 @@ p { color: var(--slate); line-height: 1.7; }
 .nav-toggle { display: none; background: none; border: 1px solid var(--border); cursor: pointer; padding: 8px; border-radius: 8px; }
 .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--navy); margin: 4px 0; transition: .3s; border-radius: 2px; }
 
+/* ── Ticker Bar ── */
+.ticker-bar {
+  background: var(--navy);
+  overflow: hidden;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding: 0;
+  height: 38px;
+  display: flex;
+  align-items: center;
+}
+.ticker-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  animation: ticker-scroll 35s linear infinite;
+  will-change: transform;
+}
+.ticker-bar:hover .ticker-track { animation-play-state: paused; }
+.ticker-item {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: rgba(255,255,255,.88);
+  padding: 0 18px;
+  white-space: nowrap;
+}
+.ticker-sep {
+  color: var(--blue-light);
+  font-size: .8rem;
+  opacity: .6;
+  flex-shrink: 0;
+}
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* ── Hero ── */
 .hero {
   position: relative; overflow: hidden; min-height: 100vh;

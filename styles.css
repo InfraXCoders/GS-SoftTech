@@ -199,7 +199,7 @@ p { color: var(--slate); line-height: 1.7; }
   position: relative; overflow: hidden; min-height: 100vh;
   display: flex; align-items: center;
   background: linear-gradient(160deg, #f0f6ff 0%, #ffffff 50%, #f4f7fc 100%);
-  padding: 100px 0 80px;
+  padding: 40px 0 80px;
 }
 
 .hero-bg {

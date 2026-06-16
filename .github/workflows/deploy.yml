@@ -27,30 +27,30 @@ jobs:
 
       # ── 3. Deploy files via rsync ─────────────────────────────
       - name: Deploy files via rsync
+        env:
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
         run: |
+          SSH_CMD="ssh -p ${VPS_PORT} -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
           rsync -avz --delete \
             --exclude='.git/' \
             --exclude='.github/' \
             --exclude='server/' \
             --exclude='*.md' \
-            -e "ssh -p ${{ secrets.VPS_PORT }} \
-                    -i ~/.ssh/id_rsa \
-                    -o StrictHostKeyChecking=no \
-                    -o UserKnownHostsFile=/dev/null" \
-            ./ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/gssofttech.com/html/
+            -e "${SSH_CMD}" \
+            ./ ${VPS_USER}@${VPS_HOST}:/var/www/gssofttech.com/html/
 
       # ── 4. Fix permissions & reload Nginx ─────────────────────
       - name: Fix permissions and reload Nginx
+        env:
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
         run: |
-          ssh -p "${{ secrets.VPS_PORT }}" \
-              -i ~/.ssh/id_rsa \
-              -o StrictHostKeyChecking=no \
-              -o UserKnownHostsFile=/dev/null \
-              "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
-              "sudo chown -R www-data:www-data /var/www/gssofttech.com/html && \
-               sudo chmod -R 755 /var/www/gssofttech.com/html && \
-               sudo nginx -t && \
-               sudo systemctl reload nginx"
+          ssh -p "${VPS_PORT}" -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+            "${VPS_USER}@${VPS_HOST}" \
+            "sudo chown -R www-data:www-data /var/www/gssofttech.com/html && sudo chmod -R 755 /var/www/gssofttech.com/html && sudo nginx -t && sudo systemctl reload nginx"
 
       # ── 5. Done ───────────────────────────────────────────────
       - name: Deployment complete

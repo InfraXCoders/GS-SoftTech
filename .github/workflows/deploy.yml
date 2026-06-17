@@ -17,7 +17,7 @@ jobs:
 
       # ── 2. Copy files to VPS ──────────────────────────────────
       - name: Upload files via SCP
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v0.1.8
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
@@ -29,7 +29,7 @@ jobs:
 
       # ── 3. Fix permissions & reload Nginx ─────────────────────
       - name: Fix permissions and reload Nginx
-        uses: appleboy/ssh-action@v1.2.0
+        uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}

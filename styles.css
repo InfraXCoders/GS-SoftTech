@@ -198,51 +198,36 @@ p { color: var(--slate); line-height: 1.7; }
 .hero {
   position: relative; overflow: hidden; min-height: 100vh;
   display: flex; align-items: center;
-  background: #0d0030;
+  background: #0a1628;
   padding: 40px 0 80px;
 }
 
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
-  /* Circuit board tiled 4× across */
   background-image: url('assets/hero-circuit.jpg');
-  background-size: 25% auto;
-  background-repeat: repeat-x;
+  background-size: cover;
   background-position: center;
-  opacity: 0.32;
+  opacity: 0.22;
 }
 .hero-bg::before { display: none; }
 .hero-bg::after {
   content: ''; position: absolute; inset: 0;
-  /* Purple→blue gradient tiled 4× — each band is 25% wide */
-  background: repeating-linear-gradient(
-    90deg,
-    rgba(90,0,170,.80)   0%,
-    rgba(50,0,140,.75)   8%,
-    rgba(10,30,160,.70) 17%,
-    rgba(0,70,210,.75)  25%,
-    rgba(90,0,170,.80)  25%,
-    rgba(50,0,140,.75)  33%,
-    rgba(10,30,160,.70) 42%,
-    rgba(0,70,210,.75)  50%,
-    rgba(90,0,170,.80)  50%,
-    rgba(50,0,140,.75)  58%,
-    rgba(10,30,160,.70) 67%,
-    rgba(0,70,210,.75)  75%,
-    rgba(90,0,170,.80)  75%,
-    rgba(50,0,140,.75)  83%,
-    rgba(10,30,160,.70) 92%,
-    rgba(0,70,210,.75) 100%
-  );
+  background: linear-gradient(125deg,
+    rgba(5,15,35,.88) 0%,
+    rgba(5,15,35,.55) 52%,
+    rgba(5,15,35,.78) 100%),
+    radial-gradient(ellipse 55% 60% at 78% 45%, rgba(29,111,242,.22), transparent 65%),
+    radial-gradient(ellipse 40% 40% at 10% 20%, rgba(124,58,237,.14), transparent 60%);
 }
 
-/* Thin vertical divider lines between the 4 panels */
+/* 4 teal cloud glows distributed across the hero */
 .hero::after {
   content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
-    linear-gradient(90deg, transparent 24.8%, rgba(255,255,255,.06) 25%, transparent 25.2%),
-    linear-gradient(90deg, transparent 49.8%, rgba(255,255,255,.06) 50%, transparent 50.2%),
-    linear-gradient(90deg, transparent 74.8%, rgba(255,255,255,.06) 75%, transparent 75.2%);
+    radial-gradient(ellipse 18% 35% at 12%  60%, rgba(0,210,220,.13), transparent 70%),
+    radial-gradient(ellipse 18% 35% at 37%  40%, rgba(0,210,220,.11), transparent 70%),
+    radial-gradient(ellipse 18% 35% at 63%  65%, rgba(0,210,220,.13), transparent 70%),
+    radial-gradient(ellipse 18% 35% at 88%  35%, rgba(0,210,220,.11), transparent 70%);
 }
 
 /* Glowing cloud overlay — centred in hero */

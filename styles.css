@@ -396,6 +396,65 @@ p { color: var(--slate); line-height: 1.7; }
 }
 .skill-icon { font-size: 1rem; }
 
+/* ── AI Card ── */
+.ai-card { padding: 20px 18px; display: flex; flex-direction: column; gap: 14px; }
+
+.ai-card-header { display: flex; align-items: center; justify-content: space-between; }
+.ai-label { font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); }
+.ai-status { display: flex; align-items: center; gap: 6px; font-size: .72rem; font-weight: 600; color: #8b5cf6; }
+.ai-pulse {
+  width: 8px; height: 8px; border-radius: 50%; background: #8b5cf6; flex-shrink: 0;
+  animation: pulse-live 1.4s ease-in-out infinite;
+}
+
+/* Neural network diagram */
+.nn-diagram {
+  display: flex; align-items: center; gap: 0;
+  background: linear-gradient(135deg, #f0f6ff, #f8f4ff);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px 10px;
+}
+.nn-layer { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+.nn-label { font-size: .6rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); margin-bottom: 4px; }
+.nn-nodes { display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.nn-node {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; border: 1px solid var(--border);
+  background: var(--white); box-shadow: 0 2px 8px rgba(13,31,60,.06);
+  transition: transform .3s;
+}
+.nn-node.nn-hidden { background: linear-gradient(135deg, #eff6ff, #f3e8ff); border-color: #c4b5fd; }
+.nn-node.nn-hidden.active { background: linear-gradient(135deg, #1d6ff2, #8b5cf6); border-color: transparent; font-size: 1.1rem; animation: nn-pulse 2s ease-in-out infinite; }
+.nn-node.nn-output { background: linear-gradient(135deg, #ecfdf5, #eff6ff); border-color: #6ee7b7; }
+@keyframes nn-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(139,92,246,.4)} 50%{box-shadow:0 0 0 8px rgba(139,92,246,0)} }
+
+.nn-arrow-col { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 28px; }
+.nn-flow-line {
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--blue-100), #c4b5fd);
+  position: relative;
+}
+.nn-flow-line::after {
+  content: ''; position: absolute; right: -4px; top: -4px;
+  border: 4px solid transparent; border-left: 6px solid #c4b5fd;
+}
+
+/* AI features */
+.ai-features { display: flex; flex-direction: column; gap: 6px; }
+.ai-feat { display: flex; align-items: center; gap: 8px; font-size: .78rem; color: var(--navy); font-weight: 500; }
+.ai-feat-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+/* AI output mockup */
+.ai-output {
+  background: #0d1f3c; border-radius: 8px; padding: 10px 14px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.ai-output-label { font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #1d6ff2; }
+.ai-output-text { font-size: .8rem; color: rgba(255,255,255,.85); font-family: monospace; }
+.ai-cursor { animation: blink .8s step-end infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
 /* ── Pipeline diagram ── */
 .pipeline-card { padding: 20px 18px; display: flex; flex-direction: column; gap: 12px; }
 .pipeline-label {

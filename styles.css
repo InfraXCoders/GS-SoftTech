@@ -207,14 +207,14 @@ p { color: var(--slate); line-height: 1.7; }
   background-image: url('assets/hero-bg.jpg');
   background-size: cover;
   background-position: center;
-  opacity: 0.18;
+  opacity: 0.55;
 }
 .hero-bg::after {
   content: ''; position: absolute; inset: 0;
   background:
-    linear-gradient(160deg, rgba(10,22,40,.82) 0%, rgba(10,22,40,.6) 50%, rgba(10,22,40,.75) 100%),
-    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(29,111,242,.18), transparent 65%),
-    radial-gradient(ellipse 50% 40% at 10% 70%, rgba(124,58,237,.12), transparent 60%);
+    linear-gradient(160deg, rgba(10,22,40,.72) 0%, rgba(10,22,40,.38) 55%, rgba(10,22,40,.62) 100%),
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(29,111,242,.15), transparent 65%),
+    radial-gradient(ellipse 50% 40% at 10% 70%, rgba(124,58,237,.10), transparent 60%);
 }
 
 .orb {

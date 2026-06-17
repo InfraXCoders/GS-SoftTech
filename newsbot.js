@@ -91,7 +91,15 @@
     const html = `
 <div id="gs-newsbot">
   <button id="nb-toggle" aria-label="Open AI news feed">
-    <span id="nb-ai-label">AI</span>
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="30" height="30">
+      <rect x="10" y="6" width="30" height="36" rx="3" fill="white" opacity="0.95"/>
+      <rect x="6" y="10" width="6" height="28" rx="2" fill="white" opacity="0.85"/>
+      <rect x="14" y="11" width="18" height="3" rx="1.5" fill="#0891b2"/>
+      <rect x="14" y="17" width="9" height="2" rx="1" fill="#0891b2" opacity="0.5"/>
+      <rect x="14" y="21" width="9" height="2" rx="1" fill="#0891b2" opacity="0.5"/>
+      <rect x="14" y="25" width="6" height="2" rx="1" fill="#0891b2" opacity="0.4"/>
+      <text x="24" y="37" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="900" fill="#0891b2" letter-spacing="0.5">AI</text>
+    </svg>
   </button>
   <div id="nb-window" aria-hidden="true">
     <div id="nb-header">

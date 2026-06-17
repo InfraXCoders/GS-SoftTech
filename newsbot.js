@@ -1,49 +1,47 @@
 (function () {
-  const RSS2JSON = 'https://api.rss2json.com/v1/api.json?rss_url=';
-  const GNEWS   = 'https://news.google.com/rss/search?q=';
-  const PARAMS  = '&hl=en-US&gl=US&ceid=US:en';
-
+  const HN = 'https://hn.algolia.com/api/v1/search?tags=story&hitsPerPage=8&query=';
   const QUERIES = [
-    'artificial intelligence 2025',
-    'AI machine learning 2025',
-    'SpaceX AI Starship 2025',
-    'Cursor AI code editor 2025',
-    'Google Gemini AI 2025',
-    'Anthropic Claude AI 2025',
+    'artificial intelligence',
+    'machine learning LLM',
+    'SpaceX Starship',
+    'Cursor AI editor',
+    'Google Gemini',
+    'Anthropic Claude',
   ];
 
-  let loaded = false;
   let open   = false;
   let cached = null;
+  let loaded = false;
 
-  function timeAgo(dateStr) {
-    const diff = (Date.now() - new Date(dateStr)) / 1000;
+  function timeAgo(iso) {
+    const diff = (Date.now() - new Date(iso)) / 1000;
     if (diff < 3600)  return Math.floor(diff / 60) + 'm ago';
     if (diff < 86400) return Math.floor(diff / 3600) + 'h ago';
     return Math.floor(diff / 86400) + 'd ago';
   }
 
   async function fetchOne(query) {
-    const rssUrl  = GNEWS + encodeURIComponent(query) + PARAMS;
-    const apiUrl  = RSS2JSON + encodeURIComponent(rssUrl) + '&count=6';
-    const res     = await fetch(apiUrl, { signal: AbortSignal.timeout(10000) });
-    const data    = await res.json();
-    return (data.items || []).map(it => ({
-      title:  (it.title  || '').replace(/ - [^-]+$/, '').trim(),
-      link:   it.link  || '#',
-      pub:    it.pubDate || '',
-      source: it.author || '',
+    const res  = await fetch(HN + encodeURIComponent(query), { signal: AbortSignal.timeout(8000) });
+    const data = await res.json();
+    return (data.hits || []).map(h => ({
+      title:  h.title || '',
+      link:   h.url || ('https://news.ycombinator.com/item?id=' + h.objectID),
+      pub:    h.created_at || '',
+      source: h.author ? 'HN · ' + h.author : 'Hacker News',
+      points: h.points || 0,
     }));
   }
 
   async function fetchAll() {
     const results = await Promise.allSettled(QUERIES.map(fetchOne));
-    const seen    = new Set();
-    const all     = [];
+    const seen = new Set();
+    const all  = [];
     for (const r of results) {
-      if (r.status === 'fulfilled') {
-        for (const item of r.value) {
-          if (!seen.has(item.title)) { seen.add(item.title); all.push(item); }
+      if (r.status !== 'fulfilled') continue;
+      for (const item of r.value) {
+        if (item.title && !seen.has(item.title)) {
+          seen.add(item.title);
+          all.push(item);
         }
       }
     }
@@ -55,32 +53,36 @@
     return Array(5).fill(0).map(() => `
       <div class="nb-skeleton">
         <div class="nb-sk-line nb-sk-title"></div>
-        <div class="nb-sk-line nb-sk-title" style="width:70%;margin-top:5px"></div>
+        <div class="nb-sk-line nb-sk-title" style="width:65%;margin-top:5px"></div>
         <div class="nb-sk-line nb-sk-src"></div>
       </div>`).join('');
   }
 
   function renderItems(items) {
-    if (!items.length) return '<div class="nb-empty">No news found right now. Try refreshing.</div>';
+    if (!items.length) return '<div class="nb-empty">No articles found. Try refreshing.</div>';
     return items.map(it => `
       <a class="nb-item" href="${it.link}" target="_blank" rel="noopener">
         <div class="nb-item-title">${it.title}</div>
         <div class="nb-item-meta">
-          ${it.source ? `<span class="nb-source">${it.source}</span>` : ''}
-          ${it.pub    ? `<span class="nb-time">${timeAgo(it.pub)}</span>` : ''}
+          <span class="nb-source">${it.source}</span>
+          <div style="display:flex;gap:8px;align-items:center">
+            ${it.points ? `<span class="nb-points">▲ ${it.points}</span>` : ''}
+            ${it.pub ? `<span class="nb-time">${timeAgo(it.pub)}</span>` : ''}
+          </div>
         </div>
       </a>`).join('');
   }
 
   async function load(force) {
     const list = document.getElementById('nb-list');
+    if (!list) return;
     if (!force && cached) { list.innerHTML = renderItems(cached); return; }
     list.innerHTML = renderSkeleton();
     try {
       cached = await fetchAll();
       list.innerHTML = renderItems(cached);
-    } catch {
-      list.innerHTML = '<div class="nb-empty">Could not load news right now. Try again shortly.</div>';
+    } catch (e) {
+      list.innerHTML = '<div class="nb-empty">Could not load articles. Try refreshing.</div>';
     }
     loaded = true;
   }
@@ -98,14 +100,14 @@
         <span id="nb-header-icon">📰</span>
         <div>
           <strong>AI News Feed</strong>
-          <span>Live · Mixed topics</span>
+          <span>Live · AI · SpaceX · Cursor · Gemini · Claude</span>
         </div>
       </div>
       <div id="nb-live-dot"></div>
     </div>
     <div id="nb-list">${renderSkeleton()}</div>
     <div id="nb-footer">
-      <span>Powered by Google News</span>
+      <span>via Hacker News</span>
       <button id="nb-refresh">↻ Refresh</button>
     </div>
   </div>
@@ -122,7 +124,8 @@
     });
 
     document.getElementById('nb-refresh').addEventListener('click', () => {
-      cached = null; load(true);
+      cached = null;
+      load(true);
     });
   }
 

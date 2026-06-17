@@ -112,83 +112,28 @@
   <canvas id="hero-canvas"></canvas>
 
   <!-- Glowing cloud — reference style -->
-  <!-- 4 teal clouds with circuit lines spread across hero background -->
-  <div class="hero-clouds-bg" aria-hidden="true">
-    <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.55">
+  <div class="hero-cloud-glow">
+    <svg viewBox="0 0 420 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="210" cy="200" rx="180" ry="28" fill="rgba(0,200,255,0.13)"/>
+      <path d="M80 200 Q80 140 130 130 Q120 80 170 75 Q185 35 230 40 Q265 15 300 50 Q340 45 350 90 Q390 95 390 140 Q410 155 400 185 Q390 200 360 200 Z"
+        fill="url(#cloudGrad)" stroke="rgba(0,220,255,0.6)" stroke-width="1.5"/>
+      <!-- shine highlight -->
+      <path d="M160 100 Q185 80 220 85 Q250 75 275 90" stroke="rgba(255,255,255,0.35)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M130 145 Q150 135 175 138" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <!-- circuit lines below cloud -->
+      <line x1="210" y1="200" x2="210" y2="228" stroke="rgba(0,220,255,0.5)" stroke-width="2"/>
+      <line x1="210" y1="228" x2="150" y2="228" stroke="rgba(0,220,255,0.4)" stroke-width="1.5"/>
+      <line x1="210" y1="228" x2="270" y2="228" stroke="rgba(0,220,255,0.4)" stroke-width="1.5"/>
+      <circle cx="150" cy="228" r="4" fill="rgba(0,220,255,0.7)"/>
+      <circle cx="270" cy="228" r="4" fill="rgba(0,220,255,0.7)"/>
+      <circle cx="210" cy="240" r="4" fill="rgba(0,220,255,0.5)"/>
       <defs>
-        <linearGradient id="cg1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#7ef6ff"/><stop offset="60%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#1d6ff2"/>
+        <linearGradient id="cloudGrad" x1="80" y1="40" x2="400" y2="200" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#7ef6ff"/>
+          <stop offset="50%" stop-color="#38bdf8"/>
+          <stop offset="100%" stop-color="#1d6ff2"/>
         </linearGradient>
-        <filter id="cglow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
       </defs>
-
-      <!-- Cloud 1 — far left ~12% -->
-      <g filter="url(#cglow)" opacity="0.7">
-        <circle cx="148" cy="195" r="28" fill="url(#cg1)"/>
-        <circle cx="172" cy="185" r="36" fill="url(#cg1)"/>
-        <circle cx="200" cy="192" r="26" fill="url(#cg1)"/>
-        <rect x="130" y="193" width="96" height="24" fill="url(#cg1)"/>
-        <rect x="130" y="213" width="96" height="6" rx="3" fill="#22d3ee" opacity=".7"/>
-        <ellipse cx="172" cy="178" rx="20" ry="8" fill="white" opacity=".18"/>
-      </g>
-      <line x1="172" y1="219" x2="172" y2="250" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4,3"/>
-      <line x1="172" y1="250" x2="130" y2="250" stroke="#22d3ee" stroke-width="1.2"/>
-      <line x1="172" y1="250" x2="214" y2="250" stroke="#22d3ee" stroke-width="1.2"/>
-      <line x1="130" y1="250" x2="130" y2="270" stroke="#22d3ee" stroke-width="1.2"/>
-      <line x1="214" y1="250" x2="214" y2="268" stroke="#22d3ee" stroke-width="1.2"/>
-      <circle cx="130" cy="272" r="4" fill="#22d3ee" opacity=".8"/>
-      <circle cx="214" cy="270" r="4" fill="#22d3ee" opacity=".8"/>
-      <circle cx="172" cy="260" r="3" fill="#7ef6ff" opacity=".6"/>
-
-      <!-- Cloud 2 — left-centre ~35% -->
-      <g filter="url(#cglow)" opacity="0.65">
-        <circle cx="452" cy="490" r="24" fill="url(#cg1)"/>
-        <circle cx="474" cy="480" r="32" fill="url(#cg1)"/>
-        <circle cx="500" cy="487" r="22" fill="url(#cg1)"/>
-        <rect x="436" y="488" width="86" height="20" fill="url(#cg1)"/>
-        <rect x="436" y="505" width="86" height="5" rx="2.5" fill="#22d3ee" opacity=".7"/>
-        <ellipse cx="474" cy="474" rx="17" ry="7" fill="white" opacity=".18"/>
-      </g>
-      <line x1="474" y1="510" x2="474" y2="538" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4,3"/>
-      <line x1="474" y1="538" x2="436" y2="538" stroke="#22d3ee" stroke-width="1.2"/>
-      <line x1="474" y1="538" x2="512" y2="538" stroke="#22d3ee" stroke-width="1.2"/>
-      <circle cx="436" cy="538" r="3.5" fill="#22d3ee" opacity=".8"/>
-      <circle cx="512" cy="538" r="3.5" fill="#22d3ee" opacity=".8"/>
-      <circle cx="474" cy="548" r="3" fill="#7ef6ff" opacity=".6"/>
-
-      <!-- Cloud 3 — right-centre ~62% -->
-      <g filter="url(#cglow)" opacity="0.7">
-        <circle cx="878" cy="160" r="26" fill="url(#cg1)"/>
-        <circle cx="904" cy="148" r="34" fill="url(#cg1)"/>
-        <circle cx="932" cy="157" r="24" fill="url(#cg1)"/>
-        <rect x="860" y="158" width="96" height="22" fill="url(#cg1)"/>
-        <rect x="860" y="176" width="96" height="6" rx="3" fill="#22d3ee" opacity=".7"/>
-        <ellipse cx="904" cy="141" rx="19" ry="7" fill="white" opacity=".18"/>
-      </g>
-      <line x1="904" y1="182" x2="904" y2="212" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4,3"/>
-      <line x1="904" y1="212" x2="860" y2="212" stroke="#22d3ee" stroke-width="1.2"/>
-      <line x1="904" y1="212" x2="948" y2="212" stroke="#22d3ee" stroke-width="1.2"/>
-      <line x1="860" y1="212" x2="860" y2="232" stroke="#22d3ee" stroke-width="1.2"/>
-      <line x1="948" y1="212" x2="948" y2="230" stroke="#22d3ee" stroke-width="1.2"/>
-      <circle cx="860" cy="234" r="4" fill="#22d3ee" opacity=".8"/>
-      <circle cx="948" cy="232" r="4" fill="#22d3ee" opacity=".8"/>
-      <circle cx="904" cy="222" r="3" fill="#7ef6ff" opacity=".6"/>
-
-      <!-- Cloud 4 — far right ~88% -->
-      <g filter="url(#cglow)" opacity="0.65">
-        <circle cx="1238" cy="430" r="22" fill="url(#cg1)"/>
-        <circle cx="1260" cy="420" r="30" fill="url(#cg1)"/>
-        <circle cx="1286" cy="427" r="20" fill="url(#cg1)"/>
-        <rect x="1222" y="428" width="84" height="18" fill="url(#cg1)"/>
-        <rect x="1222" y="443" width="84" height="5" rx="2.5" fill="#22d3ee" opacity=".7"/>
-        <ellipse cx="1260" cy="413" rx="16" ry="6" fill="white" opacity=".18"/>
-      </g>
-      <line x1="1260" y1="448" x2="1260" y2="474" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4,3"/>
-      <line x1="1260" y1="474" x2="1222" y2="474" stroke="#22d3ee" stroke-width="1.2"/>
-      <line x1="1260" y1="474" x2="1298" y2="474" stroke="#22d3ee" stroke-width="1.2"/>
-      <circle cx="1222" cy="474" r="3.5" fill="#22d3ee" opacity=".8"/>
-      <circle cx="1298" cy="474" r="3.5" fill="#22d3ee" opacity=".8"/>
-      <circle cx="1260" cy="484" r="3" fill="#7ef6ff" opacity=".6"/>
     </svg>
   </div>
   <div class="orb orb-1"></div>

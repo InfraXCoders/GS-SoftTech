@@ -198,25 +198,51 @@ p { color: var(--slate); line-height: 1.7; }
 .hero {
   position: relative; overflow: hidden; min-height: 100vh;
   display: flex; align-items: center;
-  background: #12003a;
+  background: #0d0030;
   padding: 40px 0 80px;
 }
 
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
+  /* Circuit board tiled 4× across */
   background-image: url('assets/hero-circuit.jpg');
-  background-size: cover;
+  background-size: 25% auto;
+  background-repeat: repeat-x;
   background-position: center;
-  opacity: 0.28;
+  opacity: 0.32;
 }
 .hero-bg::before { display: none; }
 .hero-bg::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(125deg,
-    rgba(80,0,160,.82) 0%,
-    rgba(40,0,100,.70) 30%,
-    rgba(10,30,120,.65) 60%,
-    rgba(0,80,200,.72) 100%);
+  /* Purple→blue gradient tiled 4× — each band is 25% wide */
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(90,0,170,.80)   0%,
+    rgba(50,0,140,.75)   8%,
+    rgba(10,30,160,.70) 17%,
+    rgba(0,70,210,.75)  25%,
+    rgba(90,0,170,.80)  25%,
+    rgba(50,0,140,.75)  33%,
+    rgba(10,30,160,.70) 42%,
+    rgba(0,70,210,.75)  50%,
+    rgba(90,0,170,.80)  50%,
+    rgba(50,0,140,.75)  58%,
+    rgba(10,30,160,.70) 67%,
+    rgba(0,70,210,.75)  75%,
+    rgba(90,0,170,.80)  75%,
+    rgba(50,0,140,.75)  83%,
+    rgba(10,30,160,.70) 92%,
+    rgba(0,70,210,.75) 100%
+  );
+}
+
+/* Thin vertical divider lines between the 4 panels */
+.hero::after {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 24.8%, rgba(255,255,255,.06) 25%, transparent 25.2%),
+    linear-gradient(90deg, transparent 49.8%, rgba(255,255,255,.06) 50%, transparent 50.2%),
+    linear-gradient(90deg, transparent 74.8%, rgba(255,255,255,.06) 75%, transparent 75.2%);
 }
 
 /* Glowing cloud overlay — centred in hero */

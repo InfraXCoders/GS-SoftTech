@@ -107,7 +107,7 @@
         <span id="nb-header-icon">📰</span>
         <div>
           <strong>AI News Feed</strong>
-          <span>Live · AI · SpaceX · Cursor · Gemini · Claude</span>
+          <span>Live updates</span>
         </div>
       </div>
       <div id="nb-live-dot"></div>

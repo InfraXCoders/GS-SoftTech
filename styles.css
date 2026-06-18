@@ -1237,3 +1237,233 @@ p { color: var(--slate); line-height: 1.7; }
   #nb-window { width: calc(100vw - 32px); right: -8px; }
   #gs-newsbot { bottom: 92px; }
 }
+
+/* ═══════════════════════════════════════════════════
+   COMPREHENSIVE RESPONSIVE — Mobile · Tablet · Laptop
+   Breakpoints: 1100 | 960 | 768 | 640 | 480 | 375
+   ═══════════════════════════════════════════════════ */
+
+/* ── Large laptop (≤1100px) ── */
+@media (max-width: 1100px) {
+  .hero-grid { gap: 44px; }
+  .hero h1 { font-size: 3.4rem; }
+  .chip-orbit { width: 280px; height: 280px; }
+  .chip-1 { top: calc(50% - 105px); left: 50%; }
+  .chip-2 { top: calc(50% - 52px);  left: calc(50% + 91px); }
+  .chip-3 { top: calc(50% + 52px);  left: calc(50% + 91px); }
+  .chip-4 { top: calc(50% + 105px); left: 50%; }
+  .chip-5 { top: calc(50% + 52px);  left: calc(50% - 91px); }
+  .chip-6 { top: calc(50% - 52px);  left: calc(50% - 91px); }
+}
+
+/* ── Tablet landscape (≤960px) ── */
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  .hero-visual { max-width: 540px; margin: 0 auto; }
+  .hero h1 { font-size: 3rem; }
+  .hero p.lead { max-width: 100%; }
+  .split { grid-template-columns: 1fr; }
+  .grid-3, .steps { grid-template-columns: 1fr 1fr; }
+  .values { grid-template-columns: 1fr 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  h2 { font-size: 2rem; }
+  .pipeline-card { min-height: auto; }
+  .arch-card-inner { grid-template-columns: 1fr; gap: 24px; }
+  .arch-pillars { grid-template-columns: 1fr 1fr; }
+  .work-grid { grid-template-columns: 1fr 1fr; }
+  .chip-orbit { width: 260px; height: 260px; }
+  .chip-1 { top: calc(50% - 97px);  left: 50%; }
+  .chip-2 { top: calc(50% - 49px);  left: calc(50% + 84px); }
+  .chip-3 { top: calc(50% + 49px);  left: calc(50% + 84px); }
+  .chip-4 { top: calc(50% + 97px);  left: 50%; }
+  .chip-5 { top: calc(50% + 49px);  left: calc(50% - 84px); }
+  .chip-6 { top: calc(50% - 49px);  left: calc(50% - 84px); }
+  .core-ring { width: 78px; height: 78px; }
+}
+
+/* ── Tablet portrait (≤768px) ── */
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  section { padding: 80px 0; }
+
+  .hero { min-height: auto; padding: 60px 0 80px; }
+  .hero h1 { font-size: 2.6rem; }
+  .hero .tagline { font-size: 1.25rem; }
+  .hero p.lead { font-size: 1rem; }
+  .hero-grid { gap: 28px; }
+  .hero-stats { gap: 24px; margin-top: 36px; padding-top: 24px; }
+  .stat strong { font-size: 1.6rem; }
+
+  .chip-orbit { width: 240px; height: 240px; }
+  .chip-1 { top: calc(50% - 90px);  left: 50%; }
+  .chip-2 { top: calc(50% - 45px);  left: calc(50% + 78px); }
+  .chip-3 { top: calc(50% + 45px);  left: calc(50% + 78px); }
+  .chip-4 { top: calc(50% + 90px);  left: 50%; }
+  .chip-5 { top: calc(50% + 45px);  left: calc(50% - 78px); }
+  .chip-6 { top: calc(50% - 45px);  left: calc(50% - 78px); }
+  .core-ring { width: 72px; height: 72px; }
+  .chip-icon { width: 40px; height: 40px; font-size: 1.15rem; }
+  .chip-name { font-size: .6rem; }
+
+  h2 { font-size: 1.9rem; }
+  h3 { font-size: 1.15rem; }
+  .page-hero { padding: 64px 0 48px; }
+  .page-hero h1 { font-size: 2.2rem; }
+  .page-hero p { font-size: 1rem; }
+
+  .cta-band { padding: 48px 28px; }
+  .cta-band h2 { font-size: 1.9rem; }
+
+  .values { grid-template-columns: 1fr 1fr; }
+  .work-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .portfolio-projects { flex-direction: column; }
+
+  .nn-diagram { padding: 10px 6px; }
+  .nn-node { width: 30px; height: 30px; font-size: .85rem; }
+  .nn-arrow-col { width: 20px; }
+
+  .slide1-skills { gap: 8px; margin: 18px 0; }
+  .skill-pill { padding: 6px 12px; font-size: .8rem; }
+
+  .section-head { margin-bottom: 48px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+
+  .svc-detail { gap: 16px; }
+}
+
+/* ── Mobile (≤640px) ── */
+@media (max-width: 640px) {
+  .container { padding: 0 16px; }
+  section { padding: 64px 0; }
+
+  .hero { min-height: auto; padding: 52px 0 68px; }
+  .hero h1 { font-size: 2.1rem; }
+  .hero .tagline { font-size: 1.1rem; }
+  .hero p.lead { font-size: .95rem; margin-bottom: 24px; }
+  .hero-visual { max-width: 420px; }
+  .hero-stats { gap: 16px; flex-wrap: wrap; margin-top: 28px; padding-top: 20px; }
+  .stat strong { font-size: 1.4rem; }
+  .stat span { font-size: .7rem; }
+  .hero-badge { font-size: .7rem; padding: 5px 11px; }
+  .hero-actions { gap: 10px; }
+  .hero-actions .btn { font-size: .88rem; padding: 12px 20px; }
+  .hero-arrow { width: 34px; height: 34px; font-size: .9rem; }
+  .hero-prev { left: 8px; }
+  .hero-next { right: 8px; }
+
+  .chip-orbit { width: 220px; height: 220px; }
+  .chip-1 { top: calc(50% - 82px);  left: 50%; }
+  .chip-2 { top: calc(50% - 41px);  left: calc(50% + 71px); }
+  .chip-3 { top: calc(50% + 41px);  left: calc(50% + 71px); }
+  .chip-4 { top: calc(50% + 82px);  left: 50%; }
+  .chip-5 { top: calc(50% + 41px);  left: calc(50% - 71px); }
+  .chip-6 { top: calc(50% - 41px);  left: calc(50% - 71px); }
+  .core-ring { width: 64px; height: 64px; }
+  .core-ring svg { width: 24px; height: 24px; }
+  .core-ring span { font-size: .55rem; }
+  .chip-icon { width: 36px; height: 36px; font-size: 1rem; border-radius: 10px; }
+  .chip-name { font-size: .58rem; }
+
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.05rem; }
+  .page-hero { padding: 56px 0 40px; }
+  .page-hero h1 { font-size: 1.85rem; }
+
+  .nav-links {
+    position: fixed; inset: 72px 0 auto 0; flex-direction: column; gap: 0;
+    background: rgba(255,255,255,.97); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border); padding: 12px 20px 20px;
+    transform: translateY(-130%); transition: transform .35s ease;
+    box-shadow: var(--shadow-lg);
+  }
+  .nav-links.open { transform: translateY(0); }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .nav-cta { padding: 14px 0 0; border-bottom: 0 !important; }
+  .nav-toggle { display: block; }
+
+  .grid-3, .grid-2, .steps, .values, .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .work-grid { grid-template-columns: 1fr; }
+  .arch-pillars { grid-template-columns: 1fr; }
+
+  .cta-band { padding: 40px 20px; border-radius: 14px; }
+  .cta-band h2 { font-size: 1.65rem; }
+  .cta-band p { font-size: .93rem; margin-bottom: 24px; }
+  .cta-actions { flex-direction: column; align-items: stretch; }
+  .cta-actions .btn { justify-content: center; }
+
+  .contact-grid { gap: 32px; }
+  .form-card { padding: 22px 16px; }
+
+  .slide1-skills { gap: 6px; margin: 14px 0; }
+  .skill-pill { padding: 5px 10px; font-size: .75rem; gap: 5px; }
+  .skill-icon { font-size: .85rem; }
+
+  .pipeline-card { padding: 14px 12px; }
+  .pipe-text strong { font-size: .75rem; }
+  .pipe-text span { font-size: .6rem; }
+  .pipe-icon-wrap { width: 28px; height: 28px; font-size: .85rem; border-radius: 7px; }
+
+  .nn-node { width: 28px; height: 28px; font-size: .75rem; border-radius: 7px; }
+  .nn-label { font-size: .5rem; }
+  .nn-arrow-col { width: 16px; }
+
+  .section-head { margin-bottom: 32px; }
+  .section-head p { font-size: .97rem; }
+
+  .hero-card { padding: 18px 14px; }
+  .ai-card { padding: 16px 12px; gap: 10px; }
+  .tech-showcase { padding: 18px 14px 14px; }
+  .chip-tags { gap: 6px; margin-top: 14px; }
+  .ctag { font-size: .66rem; padding: 4px 10px; }
+}
+
+/* ── Small mobile (≤480px) ── */
+@media (max-width: 480px) {
+  .container { padding: 0 14px; }
+
+  .hero h1 { font-size: 1.85rem; }
+  .hero .tagline { font-size: 1rem; }
+  .hero-visual { max-width: 100%; }
+
+  .chip-orbit { width: 200px; height: 200px; }
+  .chip-1 { top: calc(50% - 75px);  left: 50%; }
+  .chip-2 { top: calc(50% - 37px);  left: calc(50% + 65px); }
+  .chip-3 { top: calc(50% + 37px);  left: calc(50% + 65px); }
+  .chip-4 { top: calc(50% + 75px);  left: 50%; }
+  .chip-5 { top: calc(50% + 37px);  left: calc(50% - 65px); }
+  .chip-6 { top: calc(50% - 37px);  left: calc(50% - 65px); }
+  .core-ring { width: 58px; height: 58px; }
+  .core-ring svg { width: 20px; height: 20px; }
+  .chip-icon { width: 32px; height: 32px; font-size: .88rem; }
+
+  .page-hero h1 { font-size: 1.65rem; }
+  h2 { font-size: 1.6rem; }
+
+  .hero-card { padding: 14px 12px; }
+}
+
+/* ── Very small screens (≤375px) ── */
+@media (max-width: 375px) {
+  .container { padding: 0 12px; }
+  .hero h1 { font-size: 1.65rem; }
+  .hero .tagline { font-size: .92rem; }
+  .hero-badge { font-size: .66rem; padding: 4px 9px; }
+  .hero-actions .btn { padding: 11px 16px; font-size: .82rem; }
+
+  .chip-orbit { width: 185px; height: 185px; }
+  .chip-1 { top: calc(50% - 69px);  left: 50%; }
+  .chip-2 { top: calc(50% - 34px);  left: calc(50% + 60px); }
+  .chip-3 { top: calc(50% + 34px);  left: calc(50% + 60px); }
+  .chip-4 { top: calc(50% + 69px);  left: 50%; }
+  .chip-5 { top: calc(50% + 34px);  left: calc(50% - 60px); }
+  .chip-6 { top: calc(50% - 34px);  left: calc(50% - 60px); }
+  .core-ring { width: 52px; height: 52px; }
+
+  h2 { font-size: 1.45rem; }
+  .page-hero h1 { font-size: 1.5rem; }
+  .cta-band h2 { font-size: 1.45rem; }
+  .stat strong { font-size: 1.3rem; }
+}

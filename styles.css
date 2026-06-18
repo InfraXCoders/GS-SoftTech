@@ -992,7 +992,7 @@ p { color: var(--slate); line-height: 1.7; }
 /* ── Responsive ── */
 @media (max-width: 960px) {
   .hero-grid { grid-template-columns: 1fr; }
-  .hero-visual { order: -1; max-width: 540px; margin: 0 auto; }
+  .hero-visual { max-width: 540px; margin: 0 auto; }
   .hero h1 { font-size: 2.8rem; }
   .split { grid-template-columns: 1fr; }
   .grid-3, .steps, .values { grid-template-columns: 1fr 1fr; }

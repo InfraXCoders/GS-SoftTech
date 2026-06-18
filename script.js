@@ -232,11 +232,30 @@ document.addEventListener('DOMContentLoaded', function () {
   // ── Contact form ──
   var form = document.querySelector('#contact-form');
   if (form) {
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      var ok = document.querySelector('.form-success');
-      if (ok) { ok.style.display = 'block'; ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-      form.reset();
+      var btn = form.querySelector('button[type="submit"]');
+      var ok  = document.querySelector('.form-success');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      try {
+        var res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          if (ok) { ok.style.display = 'block'; ok.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+          form.reset();
+          btn.textContent = 'Sent ✓';
+        } else {
+          btn.textContent = 'Error — try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
     });
   }
 });

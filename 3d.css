@@ -1,0 +1,138 @@
+/* ═══════════════════════════════════════════════
+   GS SoftTech — 3D Style Layer (staging)
+   Adds depth, perspective and interactive tilt
+   on top of the base design system.
+   ═══════════════════════════════════════════════ */
+
+/* ── Global perspective on card grids ── */
+.grid-3, .grid-2, .cloud-grid, .work-grid, .steps, .values, .arch-pillars {
+  perspective: 1400px;
+}
+
+/* ── Tiltable cards: real 3D transform space ── */
+.tilt3d {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform .45s cubic-bezier(.2,.7,.3,1), box-shadow .45s ease;
+  position: relative;
+}
+.tilt3d.tilting { transition: box-shadow .45s ease; }
+.tilt3d:hover {
+  box-shadow:
+    0 4px 8px rgba(13,31,60,.06),
+    0 12px 24px rgba(13,31,60,.10),
+    0 32px 64px rgba(29,111,242,.16);
+  z-index: 2;
+}
+
+/* Children float at different depths inside a tilted card */
+.tilt3d .icon,
+.tilt3d .cloud-logo,
+.tilt3d .num,
+.tilt3d .arch-pill-icon { transform: translateZ(46px); }
+.tilt3d h3, .tilt3d h4,
+.tilt3d .work-title,
+.tilt3d .cloud-meta { transform: translateZ(34px); }
+.tilt3d p,
+.tilt3d .work-desc,
+.tilt3d .cloud-desc,
+.tilt3d .cloud-services { transform: translateZ(20px); }
+.tilt3d .more,
+.tilt3d .work-visit,
+.tilt3d .work-tag-row,
+.tilt3d .cloud-badge { transform: translateZ(28px); }
+
+/* Glare sheen that follows the pointer */
+.tilt3d .glare {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--gx,50%) var(--gy,50%),
+              rgba(255,255,255,.55), rgba(255,255,255,0) 55%);
+  opacity: 0;
+  transition: opacity .35s ease;
+  transform: translateZ(60px);
+}
+.tilt3d:hover .glare { opacity: .5; }
+
+/* ── Hero: deepen the existing scene ── */
+.hero { perspective: 1200px; }
+#hero-3d {
+  position: absolute; inset: 0;
+  z-index: 0; pointer-events: none;
+}
+/* the old 2D particle canvas is replaced by the WebGL scene */
+#hero-canvas { display: none; }
+
+.hero-copy {
+  transform-style: preserve-3d;
+}
+.hero-badge   { transform: translateZ(50px); }
+.hero h1      { transform: translateZ(70px); }
+.tagline      { transform: translateZ(55px); }
+.hero .lead   { transform: translateZ(35px); }
+.slide1-skills{ transform: translateZ(40px); }
+.hero-actions { transform: translateZ(45px); }
+.hero-stats   { transform: translateZ(30px); }
+
+/* ── 3D buttons ── */
+.btn {
+  transform-style: preserve-3d;
+  transition: transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s ease,
+              background .2s, color .2s, border-color .2s;
+}
+.btn:hover  { transform: translateY(-3px) translateZ(12px); }
+.btn:active { transform: translateY(1px) translateZ(0) scale(.98); }
+.btn-primary:hover {
+  box-shadow: 0 6px 14px rgba(29,111,242,.35), 0 18px 40px rgba(29,111,242,.28);
+}
+
+/* ── Floating orbs get depth blur ── */
+.orb-1 { filter: blur(70px); }
+.orb-2 { filter: blur(90px); }
+.orb-3 { filter: blur(60px); }
+
+/* ── Section reveal now rises out of the page plane ── */
+.reveal {
+  transform: perspective(1000px) rotateX(8deg) translateY(36px);
+  transform-origin: center top;
+}
+.reveal.visible {
+  transform: perspective(1000px) rotateX(0) translateY(0);
+}
+
+/* ── Steps: number chips pop forward ── */
+.step { transform-style: preserve-3d; }
+.step .num {
+  box-shadow: 0 8px 20px rgba(29,111,242,.30);
+}
+
+/* ── Media metrics panel floats ── */
+.media-box {
+  transform-style: preserve-3d;
+  transition: transform .45s cubic-bezier(.2,.7,.3,1), box-shadow .45s ease;
+}
+.media-box .metric-item { transform: translateZ(24px); }
+
+/* ── CTA band: subtle standing depth ── */
+.cta-band {
+  transform: perspective(1400px) rotateX(1.5deg);
+  transform-origin: center bottom;
+  transition: transform .5s ease, box-shadow .5s ease;
+  box-shadow: 0 24px 60px rgba(29,111,242,.25);
+}
+.cta-band:hover { transform: perspective(1400px) rotateX(0); }
+
+/* ── Reduce motion: disable all 3D for users who ask ── */
+@media (prefers-reduced-motion: reduce) {
+  .tilt3d, .btn, .reveal, .cta-band, .media-box { transform: none !important; transition: none !important; }
+  .tilt3d .glare { display: none; }
+  #hero-3d { display: none; }
+  #hero-canvas { display: block; }
+}
+
+/* Touch devices: tilt off (no hover), keep depth shadows */
+@media (hover: none) {
+  .tilt3d .glare { display: none; }
+}

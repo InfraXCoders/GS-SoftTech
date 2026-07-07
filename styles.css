@@ -1467,3 +1467,14 @@ p { color: var(--slate); line-height: 1.7; }
   .cta-band h2 { font-size: 1.45rem; }
   .stat strong { font-size: 1.3rem; }
 }
+
+/* SVG icon colouring (replaces emoji icons) */
+.chip-icon svg { color: var(--blue); }
+.nn-node svg { color: var(--blue); }
+.nn-node.nn-hidden svg { color: #8b5cf6; }
+.nn-node.nn-output svg { color: #059669; }
+.pipe-icon-wrap svg { color: #fff; }
+.pipe-mid-icon { display: inline-flex; align-items: center; }
+.pipe-mid-icon svg { color: var(--blue); }
+.arch-pill-icon { color: var(--blue); }
+.arch-pill-icon svg { display: block; }

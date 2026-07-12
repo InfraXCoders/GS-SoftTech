@@ -1478,3 +1478,56 @@ p { color: var(--slate); line-height: 1.7; }
 .pipe-mid-icon svg { color: var(--blue); }
 .arch-pill-icon { color: var(--blue); }
 .arch-pill-icon svg { display: block; }
+
+/* ── 2026 visual refinement ── */
+body {
+  background: radial-gradient(circle at 100% 0, rgba(59,130,246,.055), transparent 25rem), var(--bg);
+}
+h1, h2, h3, h4 { letter-spacing: -.035em; line-height: 1.12; }
+h2 { font-size: clamp(2rem, 3.4vw, 2.75rem); }
+:focus-visible { outline: 3px solid rgba(29,111,242,.4); outline-offset: 3px; border-radius: 6px; }
+
+.nav-links > li:not(.nav-cta) > a { position: relative; }
+.nav-links > li:not(.nav-cta) > a::after {
+  content: ''; position: absolute; left: 14px; right: 14px; bottom: 3px; height: 2px;
+  border-radius: 999px; background: linear-gradient(90deg, var(--blue), var(--cyan));
+  transform: scaleX(0); transition: transform .22s ease;
+}
+.nav-links > li:not(.nav-cta) > a:hover::after,
+.nav-links > li:not(.nav-cta) > a.active::after { transform: scaleX(1); }
+
+.bg-alt {
+  background-color: var(--bg-alt);
+  background-image: radial-gradient(rgba(29,111,242,.13) .65px, transparent .65px);
+  background-size: 18px 18px;
+}
+.card h3 { max-width: 23ch; }
+
+.page-hero {
+  background: linear-gradient(145deg, #f8fbff 0%, #edf4ff 55%, #f5f8ff 100%);
+  padding: 96px 0 78px;
+}
+.page-hero::before {
+  background:
+    radial-gradient(ellipse 45% 85% at 12% 8%, rgba(29,111,242,.13), transparent 70%),
+    radial-gradient(ellipse 45% 85% at 88% 8%, rgba(8,145,178,.1), transparent 70%);
+}
+.page-hero h1 { font-size: clamp(2.35rem, 5vw, 3.55rem); }
+
+.svc-detail { position: relative; overflow: hidden; transition: box-shadow .3s, border-color .3s, transform .3s, background .3s; }
+.svc-detail::after {
+  content: ''; position: absolute; left: 0; top: 18px; bottom: 18px; width: 3px;
+  border-radius: 0 4px 4px 0; background: linear-gradient(var(--blue), var(--cyan));
+  transform: scaleY(.2); opacity: 0; transition: transform .25s ease, opacity .25s ease;
+}
+.svc-detail:hover { box-shadow: var(--shadow-md); border-color: var(--blue-100); transform: translateY(-3px); background: linear-gradient(135deg, #fff, #f8fbff); }
+.svc-detail:hover::after { opacity: 1; transform: scaleY(1); }
+
+.cta-band { background: linear-gradient(120deg, #071a38 0%, var(--navy) 45%, #173f7b 100%); }
+.form-card { position: relative; overflow: hidden; }
+.form-card::before { content: ''; height: 4px; position: absolute; inset: 0 0 auto; background: linear-gradient(90deg, var(--blue), var(--cyan), var(--purple)); }
+
+@media (max-width: 640px) {
+  .page-hero { padding: 68px 0 52px; }
+  .nav-links > li:not(.nav-cta) > a::after { left: 0; right: auto; bottom: 8px; width: 28px; }
+}

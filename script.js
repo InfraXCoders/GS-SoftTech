@@ -16,9 +16,15 @@ document.addEventListener('DOMContentLoaded', function () {
   var toggle = document.querySelector('.nav-toggle');
   var links = document.querySelector('.nav-links');
   if (toggle && links) {
-    toggle.addEventListener('click', function () { links.classList.toggle('open'); });
+    toggle.addEventListener('click', function () {
+      var isOpen = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
     links.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () { links.classList.remove('open'); });
+      a.addEventListener('click', function () {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
     });
   }
 
@@ -107,13 +113,15 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function animateCanvas() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(function (p) { p.update(); p.draw(); });
       connectParticles();
       requestAnimationFrame(animateCanvas);
     }
-    animateCanvas();
+    if (!reduceMotion) animateCanvas();
+    else { particles.forEach(function (p) { p.draw(); }); connectParticles(); }
   }
 
   // Tagline is static — no typing animation
@@ -234,6 +242,10 @@ document.addEventListener('DOMContentLoaded', function () {
   if (form) {
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
       var btn = form.querySelector('button[type="submit"]');
       var ok  = document.querySelector('.form-success');
       btn.disabled = true;

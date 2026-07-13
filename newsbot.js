@@ -1,5 +1,7 @@
 (function () {
-  const HN = 'https://hn.algolia.com/api/v1/search?tags=story&hitsPerPage=8&query=';
+  // `search_by_date` is important here: the regular search endpoint ranks by
+  // relevance and can surface stories that are weeks or months old.
+  const HN = 'https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=10&query=';
   const QUERIES = [
     'artificial intelligence',
     'machine learning LLM',
@@ -11,7 +13,10 @@
 
   let open   = false;
   let cached = null;
+  let cachedAt = 0;
   let loaded = false;
+
+  const CACHE_FOR = 10 * 60 * 1000;
 
   function timeAgo(iso) {
     const diff = (Date.now() - new Date(iso)) / 1000;
@@ -20,13 +25,46 @@
     return Math.floor(diff / 86400) + 'd ago';
   }
 
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>'"]/g, char => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    })[char]);
+  }
+
+  function safeLink(value, id) {
+    const fallback = 'https://news.ycombinator.com/item?id=' + encodeURIComponent(id || '');
+    try {
+      const url = new URL(value || fallback);
+      return /^https?:$/.test(url.protocol) ? url.href : fallback;
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  async function fetchWithTimeout(url, timeout) {
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), timeout);
+    try {
+      const response = await fetch(url, {
+        signal: controller.signal,
+        cache: 'no-store',
+        headers: { Accept: 'application/json' }
+      });
+      if (!response.ok) throw new Error('News API returned ' + response.status);
+      return response;
+    } finally {
+      window.clearTimeout(timer);
+    }
+  }
+
   async function fetchOne(query) {
-    const res  = await fetch(HN + encodeURIComponent(query), { signal: AbortSignal.timeout(8000) });
+    const res = await fetchWithTimeout(HN + encodeURIComponent(query), 10000);
     const data = await res.json();
     return (data.hits || []).map(h => ({
       title:  h.title || '',
-      link:   h.url || ('https://news.ycombinator.com/item?id=' + h.objectID),
+      link:   safeLink(h.url, h.objectID),
       pub:    h.created_at || '',
+      timestamp: h.created_at_i || 0,
       source: h.author ? 'HN · ' + h.author : 'Hacker News',
       points: h.points || 0,
     }));
@@ -39,14 +77,15 @@
     for (const r of results) {
       if (r.status !== 'fulfilled') continue;
       for (const item of r.value) {
-        if (item.title && !seen.has(item.title)) {
-          seen.add(item.title);
+        const key = item.title.trim().toLowerCase();
+        if (item.title && !seen.has(key)) {
+          seen.add(key);
           all.push(item);
         }
       }
     }
-    all.sort((a, b) => new Date(b.pub) - new Date(a.pub));
-    return all;
+    if (!all.length) throw new Error('No news sources responded');
+    return all.sort((a, b) => b.timestamp - a.timestamp).slice(0, 12);
   }
 
   function renderSkeleton() {
@@ -61,10 +100,10 @@
   function renderItems(items) {
     if (!items.length) return '<div class="nb-empty">No articles found. Try refreshing.</div>';
     return items.map(it => `
-      <a class="nb-item" href="${it.link}" target="_blank" rel="noopener">
-        <div class="nb-item-title">${it.title}</div>
+      <a class="nb-item" href="${escapeHtml(it.link)}" target="_blank" rel="noopener">
+        <div class="nb-item-title">${escapeHtml(it.title)}</div>
         <div class="nb-item-meta">
-          <span class="nb-source">${it.source}</span>
+          <span class="nb-source">${escapeHtml(it.source)}</span>
           <div style="display:flex;gap:8px;align-items:center">
             ${it.points ? `<span class="nb-points">▲ ${it.points}</span>` : ''}
             ${it.pub ? `<span class="nb-time">${timeAgo(it.pub)}</span>` : ''}
@@ -76,15 +115,20 @@
   async function load(force) {
     const list = document.getElementById('nb-list');
     if (!list) return;
-    if (!force && cached) { list.innerHTML = renderItems(cached); return; }
+    if (!force && cached && Date.now() - cachedAt < CACHE_FOR) {
+      list.innerHTML = renderItems(cached);
+      return;
+    }
     list.innerHTML = renderSkeleton();
     try {
       cached = await fetchAll();
+      cachedAt = Date.now();
       list.innerHTML = renderItems(cached);
+      loaded = true;
     } catch (e) {
-      list.innerHTML = '<div class="nb-empty">Could not load articles. Try refreshing.</div>';
+      list.innerHTML = '<div class="nb-empty">Latest articles are temporarily unavailable. Try refreshing.</div>';
+      loaded = false;
     }
-    loaded = true;
   }
 
   function build() {
@@ -112,7 +156,7 @@
       </div>
       <div id="nb-live-dot"></div>
     </div>
-    <div id="nb-list">${renderSkeleton()}</div>
+    <div id="nb-list" aria-live="polite">${renderSkeleton()}</div>
     <div id="nb-footer">
       <span>via Hacker News</span>
       <button id="nb-refresh">↻ Refresh</button>
@@ -132,6 +176,7 @@
 
     document.getElementById('nb-refresh').addEventListener('click', () => {
       cached = null;
+      cachedAt = 0;
       load(true);
     });
   }

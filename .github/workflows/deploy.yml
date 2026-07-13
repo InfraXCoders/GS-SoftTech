@@ -1,8 +1,10 @@
 name: Deploy to VPS
 
+# Disabled auto-deploy (hosting moved to GitHub Pages).
+# Re-enable by uncommenting the push trigger below.
 on:
-  push:
-    branches: [master]
+  # push:
+  #   branches: [master]
   workflow_dispatch:
 
 jobs:

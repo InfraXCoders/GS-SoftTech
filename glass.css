@@ -229,6 +229,12 @@ body::after {
   .trust-pill { background: #f7f9ff; }
 }
 
+/* ── Inner page hero: dark text on the light glass panel ── */
+.page-hero h1 { color: var(--navy); }
+.page-hero p { color: var(--slate); }
+.breadcrumb, .breadcrumb a { color: var(--slate-light); }
+.breadcrumb a:hover { color: var(--blue); }
+
 /* ── Respect reduced-motion: freeze the drifting blobs ── */
 @media (prefers-reduced-motion: reduce) {
   body::before, body::after { animation: none; }

@@ -1,0 +1,235 @@
+/* ═══════════════════════════════════════════════════════════
+   GS SoftTech — Liquid Glass design layer
+   Translucent frosted surfaces, backdrop blur, specular edges.
+   Layered on top of styles.css — remove this <link> to revert.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --glass-bg:        rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.72);
+  --glass-bg-soft:   rgba(255, 255, 255, 0.38);
+  --glass-border:    rgba(255, 255, 255, 0.70);
+  --glass-blur:      saturate(180%) blur(20px);
+  --glass-blur-lg:   saturate(190%) blur(30px);
+  /* specular rim: bright top-left highlight + soft ambient drop */
+  --glass-rim:
+     inset 0 1px 0 rgba(255,255,255,0.85),
+     inset 0 0 0 1px rgba(255,255,255,0.30),
+     inset 0 -8px 20px rgba(255,255,255,0.18);
+  --glass-shadow:    0 8px 32px rgba(13,31,60,0.10), 0 2px 8px rgba(13,31,60,0.05);
+  --glass-shadow-lg: 0 20px 60px rgba(29,111,242,0.14), 0 6px 18px rgba(13,31,60,0.08);
+}
+
+/* ── Living page backdrop so translucency has something to refract ── */
+body {
+  background:
+    radial-gradient(60rem 60rem at 8% -10%,  rgba(29,111,242,0.14), transparent 60%),
+    radial-gradient(50rem 50rem at 100% 8%,  rgba(124,58,237,0.12), transparent 55%),
+    radial-gradient(55rem 55rem at 50% 115%, rgba(8,145,178,0.12),  transparent 60%),
+    #f3f6fd;
+  background-attachment: fixed;
+}
+
+/* floating colour blobs that drift behind the glass */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+body::before {
+  width: 42vw; height: 42vw; top: -8vw; right: -6vw;
+  background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.55), rgba(124,58,237,0.25) 60%, transparent 72%);
+  animation: glassDriftA 22s ease-in-out infinite alternate;
+}
+body::after {
+  width: 36vw; height: 36vw; bottom: -10vw; left: -8vw;
+  background: radial-gradient(circle at 60% 40%, rgba(8,145,178,0.50), rgba(29,111,242,0.22) 60%, transparent 72%);
+  animation: glassDriftB 26s ease-in-out infinite alternate;
+}
+@keyframes glassDriftA { to { transform: translate3d(-5vw, 6vh, 0) scale(1.12); } }
+@keyframes glassDriftB { to { transform: translate3d(6vw, -5vh, 0) scale(1.1); } }
+
+/* ── Shared glass surface recipe ── */
+.site-header,
+.card, .cloud-card, .work-card, .step, .media-box,
+.hero-badge, .skill-pill, .trust-pill, .ticker-bar,
+.pipeline-card, .tech-showcase, .ai-card, .arch-pillar {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-rim), var(--glass-shadow);
+}
+
+/* ── Sticky header: the canonical glass bar ── */
+.site-header {
+  background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.46));
+  -webkit-backdrop-filter: var(--glass-blur-lg);
+  backdrop-filter: var(--glass-blur-lg);
+  border: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.55);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 6px 24px rgba(13,31,60,0.07);
+}
+
+/* ── Ticker: thin translucent strip ── */
+.ticker-bar {
+  background: linear-gradient(180deg, rgba(13,31,60,0.82), rgba(13,31,60,0.70));
+  -webkit-backdrop-filter: saturate(160%) blur(14px);
+  backdrop-filter: saturate(160%) blur(14px);
+  border: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  box-shadow: none;
+}
+
+/* ── Cards: frosted panes with specular rim & liquid hover ── */
+.card, .cloud-card, .work-card, .step {
+  border-radius: 20px;
+  transition: transform .4s cubic-bezier(.2,.7,.3,1), box-shadow .4s ease, background .3s ease;
+}
+.card::before, .cloud-card::before { display: none; }  /* retire old hover wash */
+.card:hover, .cloud-card:hover, .work-card:hover, .step:hover {
+  background: var(--glass-bg-strong);
+  transform: translateY(-6px);
+  box-shadow: var(--glass-rim), var(--glass-shadow-lg);
+  border-color: rgba(255,255,255,0.9);
+}
+
+/* Card icon tiles become little glass chips */
+.card .icon, .svc-detail .icon {
+  background: linear-gradient(135deg, rgba(255,255,255,0.75), rgba(233,240,255,0.55));
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.8);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 4px 12px rgba(29,111,242,0.12);
+  color: var(--blue);
+}
+
+/* ── Media / metrics panel ── */
+.media-box { border-radius: 22px; }
+.media-box .metric-item {
+  background: rgba(255,255,255,0.45);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 12px;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+/* ── Pills & badges ── */
+.hero-badge {
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.32);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+  color: #e8f0ff;
+}
+.skill-pill {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.26);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+}
+.trust-pill {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 10px rgba(13,31,60,0.05);
+  border-radius: 999px;
+}
+
+/* ── Buttons: liquid glass pills ── */
+.btn-primary {
+  background: linear-gradient(135deg, rgba(59,130,246,0.92), rgba(29,111,242,0.88));
+  border: 1px solid rgba(255,255,255,0.45);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.55),
+    inset 0 -6px 14px rgba(0,30,90,0.25),
+    0 8px 22px rgba(29,111,242,0.32);
+}
+.btn-primary:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.65),
+    0 12px 30px rgba(29,111,242,0.42);
+}
+.btn-ghost {
+  background: rgba(255,255,255,0.45);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 4px 14px rgba(13,31,60,0.06);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.62); }
+.btn-light {
+  background: rgba(255,255,255,0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 8px 22px rgba(0,0,0,0.18);
+}
+.btn-outline-light {
+  background: rgba(255,255,255,0.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* ── Hero cards (the showcase panels) read as thick frosted glass ── */
+.hero-card, .pipeline-card, .tech-showcase, .ai-card {
+  background: rgba(255,255,255,0.72);
+  -webkit-backdrop-filter: var(--glass-blur-lg);
+  backdrop-filter: var(--glass-blur-lg);
+  border: 1px solid rgba(255,255,255,0.8);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.9),
+    0 24px 70px rgba(13,31,60,0.22);
+  border-radius: 22px;
+}
+
+/* ── Steps: numbered frosted tiles ── */
+.step { border-radius: 18px; }
+
+/* ── CTA band keeps its deep gradient but gains a glass inner sheen ── */
+.cta-band {
+  border: 1px solid rgba(255,255,255,0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    0 24px 60px rgba(29,111,242,0.25);
+}
+
+/* ── Floating chat / bot buttons → glass orbs ── */
+#chatbot-toggle, #newsbot-toggle,
+.chatbot-toggle, .newsbot-toggle,
+[class*="bot-toggle"], [class*="bot-fab"] {
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  backdrop-filter: blur(10px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.35) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 10px 28px rgba(29,111,242,0.35) !important;
+}
+
+/* ── Mobile nav drawer ── */
+@media (max-width: 860px) {
+  .nav-links {
+    background: rgba(255,255,255,0.78);
+    -webkit-backdrop-filter: var(--glass-blur-lg);
+    backdrop-filter: var(--glass-blur-lg);
+    border-bottom: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 16px 40px rgba(13,31,60,0.12);
+  }
+}
+
+/* ── Graceful fallback where backdrop-filter is unsupported ── */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .site-header { background: rgba(255,255,255,0.96); }
+  .card, .cloud-card, .work-card, .step, .media-box,
+  .hero-card, .pipeline-card, .tech-showcase, .ai-card { background: #ffffff; }
+  .trust-pill { background: #f7f9ff; }
+}
+
+/* ── Respect reduced-motion: freeze the drifting blobs ── */
+@media (prefers-reduced-motion: reduce) {
+  body::before, body::after { animation: none; }
+}
